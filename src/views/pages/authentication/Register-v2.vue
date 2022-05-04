@@ -1,7 +1,6 @@
 <template>
   <div class="auth-wrapper auth-v2">
     <b-row class="auth-inner m-0">
-
       <!-- Brand logo-->
       <b-link class="brand-logo">
         <vuexy-logo />
@@ -13,35 +12,19 @@
       <!-- /Brand logo-->
 
       <!-- Left Text-->
-      <b-col
-        lg="8"
-        class="d-none d-lg-flex align-items-center p-5"
-      >
-        <div class="w-100 d-lg-flex align-items-center justify-content-center px-5">
-          <b-img
-            fluid
-            :src="imgUrl"
-            alt="Register V2"
-          />
+      <b-col lg="8" class="d-none d-lg-flex align-items-center p-5">
+        <div
+          class="w-100 d-lg-flex align-items-center justify-content-center px-5"
+        >
+          <b-img fluid :src="imgUrl" alt="Register V2" />
         </div>
       </b-col>
       <!-- /Left Text-->
 
       <!-- Register-->
-      <b-col
-        lg="4"
-        class="d-flex align-items-center auth-bg px-2 p-lg-5"
-      >
-        <b-col
-          sm="8"
-          md="6"
-          lg="12"
-          class="px-xl-2 mx-auto"
-        >
-          <b-card-title
-            title-tag="h2"
-            class="font-weight-bold mb-1"
-          >
+      <b-col lg="4" class="d-flex align-items-center auth-bg px-2 p-lg-5">
+        <b-col sm="8" md="6" lg="12" class="px-xl-2 mx-auto">
+          <b-card-title title-tag="h2" class="font-weight-bold mb-1">
             Adventure starts here 🚀
           </b-card-title>
           <b-card-text class="mb-2">
@@ -52,10 +35,7 @@
           <validation-observer ref="registerForm">
             <b-form class="auth-register-form mt-2">
               <!-- username -->
-              <b-form-group
-                label="Username"
-                label-for="register-username"
-              >
+              <b-form-group label="Username" label-for="register-username">
                 <validation-provider
                   #default="{ errors }"
                   name="Username"
@@ -65,7 +45,7 @@
                     id="register-username"
                     v-model="username"
                     name="register-username"
-                    :state="errors.length > 0 ? false:null"
+                    :state="errors.length > 0 ? false : null"
                     placeholder="johndoe"
                   />
                   <small class="text-danger">{{ errors[0] }}</small>
@@ -73,10 +53,7 @@
               </b-form-group>
 
               <!-- email -->
-              <b-form-group
-                label="Email"
-                label-for="register-email"
-              >
+              <b-form-group label="Email" label-for="register-email">
                 <validation-provider
                   #default="{ errors }"
                   name="Email"
@@ -86,7 +63,7 @@
                     id="register-email"
                     v-model="userEmail"
                     name="register-email"
-                    :state="errors.length > 0 ? false:null"
+                    :state="errors.length > 0 ? false : null"
                     placeholder="john@example.com"
                   />
                   <small class="text-danger">{{ errors[0] }}</small>
@@ -94,10 +71,7 @@
               </b-form-group>
 
               <!-- password -->
-              <b-form-group
-                label-for="register-password"
-                label="Password"
-              >
+              <b-form-group label-for="register-password" label="Password">
                 <validation-provider
                   #default="{ errors }"
                   name="Password"
@@ -105,14 +79,14 @@
                 >
                   <b-input-group
                     class="input-group-merge"
-                    :class="errors.length > 0 ? 'is-invalid':null"
+                    :class="errors.length > 0 ? 'is-invalid' : null"
                   >
                     <b-form-input
                       id="register-password"
                       v-model="password"
                       class="form-control-merge"
                       :type="passwordFieldType"
-                      :state="errors.length > 0 ? false:null"
+                      :state="errors.length > 0 ? false : null"
                       name="register-password"
                       placeholder="············"
                     />
@@ -152,7 +126,7 @@
 
           <p class="text-center mt-2">
             <span>Already have an account?</span>
-            <b-link :to="{name:'auth-login-v2'}">
+            <b-link :to="{ name: 'auth-login-v2' }">
               <span>&nbsp;Sign in instead</span>
             </b-link>
           </p>
@@ -165,49 +139,49 @@
           </div>
 
           <div class="auth-footer-btn d-flex justify-content-center">
-            <b-button
-              variant="facebook"
-              href="javascript:void(0)"
-            >
+            <b-button variant="facebook" href="javascript:void(0)">
               <feather-icon icon="FacebookIcon" />
             </b-button>
-            <b-button
-              variant="twitter"
-              href="javascript:void(0)"
-            >
+            <b-button variant="twitter" href="javascript:void(0)">
               <feather-icon icon="TwitterIcon" />
             </b-button>
-            <b-button
-              variant="google"
-              href="javascript:void(0)"
-            >
+            <b-button variant="google" href="javascript:void(0)">
               <feather-icon icon="MailIcon" />
             </b-button>
-            <b-button
-              variant="github"
-              href="javascript:void(0)"
-            >
+            <b-button variant="github" href="javascript:void(0)">
               <feather-icon icon="GithubIcon" />
             </b-button>
           </div>
         </b-col>
       </b-col>
-    <!-- /Register-->
+      <!-- /Register-->
     </b-row>
   </div>
 </template>
 
 <script>
 /* eslint-disable global-require */
-import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import VuexyLogo from '@core/layouts/components/Logo.vue'
+import { ValidationProvider, ValidationObserver } from "vee-validate";
+import VuexyLogo from "@core/layouts/components/Logo.vue";
 import {
-  BRow, BCol, BLink, BButton, BForm, BFormCheckbox, BFormGroup, BFormInput, BInputGroup, BInputGroupAppend, BImg, BCardTitle, BCardText,
-} from 'bootstrap-vue'
-import { required, email } from '@validations'
-import { togglePasswordVisibility } from '@core/mixins/ui/forms'
-import store from '@/store/index'
-import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+  BRow,
+  BCol,
+  BLink,
+  BButton,
+  BForm,
+  BFormCheckbox,
+  BFormGroup,
+  BFormInput,
+  BInputGroup,
+  BInputGroupAppend,
+  BImg,
+  BCardTitle,
+  BCardText,
+} from "bootstrap-vue";
+import { required, email } from "@validations";
+import { togglePasswordVisibility } from "@core/mixins/ui/forms";
+import store from "@/store/index";
+import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
 
 export default {
   components: {
@@ -232,49 +206,49 @@ export default {
   mixins: [togglePasswordVisibility],
   data() {
     return {
-      status: '',
-      username: '',
-      userEmail: '',
-      password: '',
-      sideImg: require('@/assets/images/pages/register-v2.svg'),
+      status: "",
+      username: "",
+      userEmail: "",
+      password: "",
+      sideImg: require("@/assets/images/pages/register-v2.svg"),
       // validation
       required,
       email,
-    }
+    };
   },
   computed: {
     passwordToggleIcon() {
-      return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
+      return this.passwordFieldType === "password" ? "EyeIcon" : "EyeOffIcon";
     },
     imgUrl() {
-      if (store.state.appConfig.layout.skin === 'dark') {
+      if (store.state.appConfig.layout.skin === "dark") {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.sideImg = require('@/assets/images/pages/register-v2-dark.svg')
-        return this.sideImg
+        this.sideImg = require("@/assets/images/pages/register-v2-dark.svg");
+        return this.sideImg;
       }
-      return this.sideImg
+      return this.sideImg;
     },
   },
   methods: {
     validationForm() {
-      this.$refs.registerForm.validate().then(success => {
+      this.$refs.registerForm.validate().then((success) => {
         if (success) {
           this.$toast({
             component: ToastificationContent,
             props: {
-              title: 'Form Submitted',
-              icon: 'EditIcon',
-              variant: 'success',
+              title: "Form Submitted",
+              icon: "EditIcon",
+              variant: "success",
             },
-          })
+          });
         }
-      })
+      });
     },
   },
-}
+};
 /* eslint-disable global-require */
 </script>
 
 <style lang="scss">
-@import '@core/scss/vue/pages/page-auth.scss';
+@import "@core/scss/vue/pages/page-auth.scss";
 </style>

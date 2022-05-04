@@ -36,28 +36,13 @@
 
     <b-row class="match-height">
       <b-col lg="6">
-        <analytics-avg-sessions :data="data.avgSessions" />
-      </b-col>
-      <b-col lg="6">
-        <analytics-support-tracker :data="data.supportTracker" />
-      </b-col>
-    </b-row>
-
-    <b-row class="match-height">
-      <b-col lg="4">
         <analytics-timeline :data="data.timeline" />
       </b-col>
-      <b-col lg="4">
-        <analytics-sales-radar-chart :data="data.salesChart" />
-      </b-col>
-      <b-col lg="4">
-        <analytics-app-design :data="data.appDesign" />
-      </b-col>
-    </b-row>
-
-    <b-row>
-      <b-col cols="12">
-        <invoice-list />
+      <b-col
+        lg="6"
+        md="6"
+      >
+        <ecommerce-transactions :data="data.transactionData" />
       </b-col>
     </b-row>
   </section>
@@ -68,26 +53,18 @@ import { BRow, BCol } from 'bootstrap-vue'
 
 import StatisticCardWithAreaChart from '@core/components/statistics-cards/StatisticCardWithAreaChart.vue'
 import { kFormatter } from '@core/utils/filter'
-import InvoiceList from '@/views/apps/invoice/invoice-list/InvoiceList.vue'
 import AnalyticsCongratulation from './AnalyticsCongratulation.vue'
-import AnalyticsAvgSessions from './AnalyticsAvgSessions.vue'
-import AnalyticsSupportTracker from './AnalyticsSupportTracker.vue'
 import AnalyticsTimeline from './AnalyticsTimeline.vue'
-import AnalyticsSalesRadarChart from './AnalyticsSalesRadarChart.vue'
-import AnalyticsAppDesign from './AnalyticsAppDesign.vue'
+import EcommerceTransactions from './EcommerceTransactions.vue'
 
 export default {
   components: {
     BRow,
     BCol,
     AnalyticsCongratulation,
-    AnalyticsAvgSessions,
     StatisticCardWithAreaChart,
-    AnalyticsSupportTracker,
     AnalyticsTimeline,
-    AnalyticsSalesRadarChart,
-    AnalyticsAppDesign,
-    InvoiceList,
+    EcommerceTransactions,
   },
   data() {
     return {

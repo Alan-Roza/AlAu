@@ -1,7 +1,7 @@
 export default [
   {
-    title: 'Dashboard',
-    icon: 'HomeIcon',
-    route: 'dashboard-analytics',
+    title: "Painel de Controle",
+    icon: "HomeIcon",
+    route: "dashboard-analytics",
   },
-]
+];

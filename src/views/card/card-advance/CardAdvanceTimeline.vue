@@ -2,28 +2,25 @@
   <b-card no-body>
     <b-card-header>
       <div class="d-flex align-items-center">
-        <feather-icon
-          size="24"
-          class="mr-1"
-          icon="ListIcon"
-        />
+        <feather-icon size="24" class="mr-1" icon="ListIcon" />
         <b-card-title class="ml-25">
-          User Timeline
+          Futura Alimentações
         </b-card-title>
       </div>
-      <feather-icon
-        icon="MoreVerticalIcon"
-        size="18"
-      />
+      <feather-icon icon="MoreVerticalIcon" size="18" />
     </b-card-header>
 
     <!-- timeline -->
     <b-card-body>
       <app-timeline>
         <app-timeline-item variant="primary">
-          <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+          <div
+            class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1"
+          >
             <h6>12 Invoices have been paid</h6>
-            <small class="timeline-item-time text-nowrap text-muted ml-1">12 min ago</small>
+            <small class="timeline-item-time text-nowrap text-muted ml-1"
+              >12 min ago</small
+            >
           </div>
           <p>Invoices have been paid to the company.</p>
           <b-media no-body>
@@ -43,9 +40,13 @@
         </app-timeline-item>
 
         <app-timeline-item variant="warning">
-          <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+          <div
+            class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1"
+          >
             <h6>Client Meeting</h6>
-            <small class="timeline-item-time text-nowrap text-muted ml-1">45 min ago</small>
+            <small class="timeline-item-time text-nowrap text-muted ml-1"
+              >45 min ago</small
+            >
           </div>
           <p>Project meeting with john @10:15am</p>
           <b-media no-body>
@@ -67,9 +68,13 @@
         </app-timeline-item>
 
         <app-timeline-item variant="info">
-          <div class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1">
+          <div
+            class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1"
+          >
             <h6>Create a new project for client</h6>
-            <small class="timeline-item-time text-nowrap text-muted ml-1">2 day ago</small>
+            <small class="timeline-item-time text-nowrap text-muted ml-1"
+              >2 day ago</small
+            >
           </div>
           <p>Add files to new design folder</p>
           <b-avatar-group size="35px">
@@ -97,10 +102,20 @@
 
 <script>
 import {
-  BCard, BCardBody, BCardHeader, BCardTitle, BImg, BMedia, BMediaBody, BMediaAside, BAvatar, BAvatarGroup, VBTooltip,
-} from 'bootstrap-vue'
-import AppTimeline from '@core/components/app-timeline/AppTimeline.vue'
-import AppTimelineItem from '@core/components/app-timeline/AppTimelineItem.vue'
+  BCard,
+  BCardBody,
+  BCardHeader,
+  BCardTitle,
+  BImg,
+  BMedia,
+  BMediaBody,
+  BMediaAside,
+  BAvatar,
+  BAvatarGroup,
+  VBTooltip,
+} from "bootstrap-vue";
+import AppTimeline from "@core/components/app-timeline/AppTimeline.vue";
+import AppTimelineItem from "@core/components/app-timeline/AppTimelineItem.vue";
 /* eslint-disable global-require */
 export default {
   components: {
@@ -118,18 +133,33 @@ export default {
     BAvatarGroup,
   },
   directives: {
-    'b-tooltip': VBTooltip,
+    "b-tooltip": VBTooltip,
   },
   data() {
     return {
       avatars: [
-        { userImg: require('@/assets/images/portrait/small/avatar-s-9.jpg'), name: 'Billy Hopkins' },
-        { userImg: require('@/assets/images/portrait/small/avatar-s-6.jpg'), name: 'Amy Carson' },
-        { userImg: require('@/assets/images/portrait/small/avatar-s-8.jpg'), name: 'Brandon Miles' },
-        { userImg: require('@/assets/images/portrait/small/avatar-s-7.jpg'), name: 'Daisy Weber' },
-        { userImg: require('@/assets/images/portrait/small/avatar-s-20.jpg'), name: 'Jenny Looper' },
+        {
+          userImg: require("@/assets/images/portrait/small/avatar-s-9.jpg"),
+          name: "Billy Hopkins",
+        },
+        {
+          userImg: require("@/assets/images/portrait/small/avatar-s-6.jpg"),
+          name: "Amy Carson",
+        },
+        {
+          userImg: require("@/assets/images/portrait/small/avatar-s-8.jpg"),
+          name: "Brandon Miles",
+        },
+        {
+          userImg: require("@/assets/images/portrait/small/avatar-s-7.jpg"),
+          name: "Daisy Weber",
+        },
+        {
+          userImg: require("@/assets/images/portrait/small/avatar-s-20.jpg"),
+          name: "Jenny Looper",
+        },
       ],
-    }
+    };
   },
-}
+};
 </script>

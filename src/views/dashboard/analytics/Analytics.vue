@@ -11,7 +11,7 @@
           :statistic="
             kFormatter(data.subscribersGained.analyticsData.subscribers)
           "
-          statistic-title="Subscribers Gained"
+          statistic-title="Grafico 1"
           :chart-data="data.subscribersGained.series"
         />
       </b-col>
@@ -21,7 +21,7 @@
           icon="PackageIcon"
           color="warning"
           :statistic="kFormatter(data.ordersRecevied.analyticsData.orders)"
-          statistic-title="Orders Received"
+          statistic-title="Grafico 2"
           :chart-data="data.ordersRecevied.series"
         />
       </b-col>

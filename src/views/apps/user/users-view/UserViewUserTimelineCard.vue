@@ -1,10 +1,11 @@
 <template>
-  <b-card title="User Timeline">
+  <b-card title="Futuras Alimentações">
     <app-timeline>
-
       <!-- 12 INVOICES HAVE BEEN PAID -->
       <app-timeline-item>
-        <div class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0">
+        <div
+          class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0"
+        >
           <h6>12 Invoices have been paid</h6>
           <small class="text-muted">12 min ago</small>
         </div>
@@ -20,8 +21,9 @@
         </p>
       </app-timeline-item>
       <app-timeline-item variant="warning">
-
-        <div class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0">
+        <div
+          class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0"
+        >
           <h6>Client Meeting</h6>
           <small class="text-muted">45 min ago</small>
         </div>
@@ -47,11 +49,9 @@
 </template>
 
 <script>
-import {
-  BCard, BImg, BMedia, BAvatar,
-} from 'bootstrap-vue'
-import AppTimeline from '@core/components/app-timeline/AppTimeline.vue'
-import AppTimelineItem from '@core/components/app-timeline/AppTimelineItem.vue'
+import { BCard, BImg, BMedia, BAvatar } from "bootstrap-vue";
+import AppTimeline from "@core/components/app-timeline/AppTimeline.vue";
+import AppTimelineItem from "@core/components/app-timeline/AppTimelineItem.vue";
 
 export default {
   components: {
@@ -62,9 +62,7 @@ export default {
     AppTimeline,
     AppTimelineItem,
   },
-}
+};
 </script>
 
-<style>
-
-</style>
+<style></style>

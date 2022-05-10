@@ -18,7 +18,7 @@ export default [
   //   icon: "CheckSquareIcon",
   // },
   {
-    title: "Calendario",
+    title: "Calendário",
     route: "apps-calendar",
     icon: "CalendarIcon",
   },

@@ -1,15 +1,8 @@
 <template>
-  <b-card
-    class="card-transaction"
-    no-body
-  >
+  <b-card class="card-transaction" no-body>
     <b-card-header>
-      <b-card-title>Transactions</b-card-title>
-      <feather-icon
-        icon="MoreVerticalIcon"
-        size="18"
-        class="cursor-pointer"
-      />
+      <b-card-title>Histórico do Usuário</b-card-title>
+      <feather-icon icon="MoreVerticalIcon" size="18" class="cursor-pointer" />
     </b-card-header>
 
     <b-card-body>
@@ -20,15 +13,8 @@
       >
         <b-media no-body>
           <b-media-aside>
-            <b-avatar
-              rounded
-              size="42"
-              :variant="transaction.avatarVariant"
-            >
-              <feather-icon
-                size="18"
-                :icon="transaction.avatar"
-              />
+            <b-avatar rounded size="42" :variant="transaction.avatarVariant">
+              <feather-icon size="18" :icon="transaction.avatar" />
             </b-avatar>
           </b-media-aside>
           <b-media-body>
@@ -40,7 +26,7 @@
         </b-media>
         <div
           class="font-weight-bolder"
-          :class="transaction.deduction ? 'text-danger':'text-success'"
+          :class="transaction.deduction ? 'text-danger' : 'text-success'"
         >
           {{ transaction.payment }}
         </div>
@@ -51,8 +37,15 @@
 
 <script>
 import {
-  BCard, BCardHeader, BCardTitle, BCardBody, BMediaBody, BMedia, BMediaAside, BAvatar,
-} from 'bootstrap-vue'
+  BCard,
+  BCardHeader,
+  BCardTitle,
+  BCardBody,
+  BMediaBody,
+  BMedia,
+  BMediaAside,
+  BAvatar,
+} from "bootstrap-vue";
 
 export default {
   components: {
@@ -69,47 +62,47 @@ export default {
     return {
       transactionData: [
         {
-          mode: 'Wallet',
-          types: 'Starbucks',
-          avatar: 'PocketIcon',
-          avatarVariant: 'light-primary',
-          payment: '-$74',
+          mode: "Wallet",
+          types: "Starbucks",
+          avatar: "PocketIcon",
+          avatarVariant: "light-primary",
+          payment: "-$74",
           deduction: true,
         },
         {
-          mode: 'Bank Transfer',
-          types: 'Add Money',
-          avatar: 'CheckIcon',
-          avatarVariant: 'light-success',
-          payment: '+$480',
+          mode: "Bank Transfer",
+          types: "Add Money",
+          avatar: "CheckIcon",
+          avatarVariant: "light-success",
+          payment: "+$480",
           deduction: false,
         },
         {
-          mode: 'Paypal',
-          types: 'Add Money',
-          avatar: 'DollarSignIcon',
-          avatarVariant: 'light-danger',
-          payment: '+$480',
+          mode: "Paypal",
+          types: "Add Money",
+          avatar: "DollarSignIcon",
+          avatarVariant: "light-danger",
+          payment: "+$480",
           deduction: false,
         },
         {
-          mode: 'Mastercard',
-          types: 'Ordered Food',
-          avatar: 'CreditCardIcon',
-          avatarVariant: 'light-warning',
-          payment: '-$23',
+          mode: "Mastercard",
+          types: "Ordered Food",
+          avatar: "CreditCardIcon",
+          avatarVariant: "light-warning",
+          payment: "-$23",
           deduction: true,
         },
         {
-          mode: 'Transfer',
-          types: 'Refund',
-          avatar: 'TrendingUpIcon',
-          avatarVariant: 'light-info',
-          payment: '+$98',
+          mode: "Transfer",
+          types: "Refund",
+          avatar: "TrendingUpIcon",
+          avatarVariant: "light-info",
+          payment: "+$98",
           deduction: false,
         },
       ],
-    }
+    };
   },
-}
+};
 </script>

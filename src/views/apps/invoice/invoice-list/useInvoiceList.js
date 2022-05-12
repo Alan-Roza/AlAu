@@ -13,12 +13,11 @@ export default function useInvoicesList() {
 
   // Table Handlers
   const tableColumns = [
-    { key: 'id', label: '#', sortable: true },
-    { key: 'invoiceStatus', sortable: true },
-    { key: 'client', sortable: true },
-    { key: 'total', sortable: true, formatter: val => `$${val}` },
-    { key: 'issuedDate', sortable: true },
-    { key: 'balance', sortable: true },
+    { key: 'id', label: '#id', sortable: true },
+    { key: 'color', label: 'Cor', sortable: true },
+    { key: 'pet', label: 'Pet', sortable: true },
+    { key: 'foodAmount', label: 'Quantidade de alimento', sortable: true },
+    { key: 'updateAt', label: 'Atualização', sortable: true },
     { key: 'actions' },
   ]
   const perPage = ref(10)
@@ -67,7 +66,7 @@ export default function useInvoicesList() {
         toast({
           component: ToastificationContent,
           props: {
-            title: "Error fetching invoices' list",
+            title: 'Erro ao carregar a lista',
             icon: 'AlertTriangleIcon',
             variant: 'danger',
           },

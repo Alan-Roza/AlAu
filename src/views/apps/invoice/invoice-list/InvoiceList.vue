@@ -16,19 +16,11 @@
           md="6"
           class="d-flex align-items-center justify-content-start mb-1 mb-md-0"
         >
-          <label>Entries</label>
-          <v-select
-            v-model="perPage"
-            :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-            :options="perPageOptions"
-            :clearable="false"
-            class="per-page-selector d-inline-block ml-50 mr-1"
-          />
           <b-button
             variant="primary"
             :to="{ name: 'apps-invoice-add'}"
           >
-            Add Record
+            Adicionar Pet
           </b-button>
         </b-col>
 
@@ -41,21 +33,8 @@
             <b-form-input
               v-model="searchQuery"
               class="d-inline-block mr-1"
-              placeholder="Search..."
+              placeholder="Procurar..."
             />
-            <v-select
-              v-model="statusFilter"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-              :options="statusOptions"
-              class="invoice-filter-select"
-              placeholder="Select Status"
-            >
-              <template #selected-option="{ label }">
-                <span class="text-truncate overflow-hidden">
-                  {{ label }}
-                </span>
-              </template>
-            </v-select>
           </div>
         </b-col>
       </b-row>
@@ -70,7 +49,7 @@
       primary-key="id"
       :sort-by.sync="sortBy"
       show-empty
-      empty-text="No matching records found"
+      empty-text="Nenhum dado encontrado"
       :sort-desc.sync="isSortDirDesc"
       class="position-relative"
     >
@@ -93,14 +72,14 @@
       </template>
 
       <!-- Column: Invoice Status -->
-      <template #cell(invoiceStatus)="data">
+      <template #cell(color)="data">
         <b-avatar
           :id="`invoice-row-${data.item.id}`"
           size="32"
-          :variant="`light-${resolveInvoiceStatusVariantAndIcon(data.item.invoiceStatus).variant}`"
+          :variant="`light-${resolveInvoiceStatusVariantAndIcon(data.item.color).variant}`"
         >
           <feather-icon
-            :icon="resolveInvoiceStatusVariantAndIcon(data.item.invoiceStatus).icon"
+            :icon="resolveInvoiceStatusVariantAndIcon(data.item.color).icon"
           />
         </b-avatar>
         <b-tooltip
@@ -108,55 +87,39 @@
           placement="top"
         >
           <p class="mb-0">
-            {{ data.item.invoiceStatus }}
+            {{ data.item.color }}
           </p>
           <p class="mb-0">
-            Balance: {{ data.item.balance }}
+            Balance: {{ data.item.foodAmount }}
           </p>
           <p class="mb-0">
-            Due Date: {{ data.item.dueDate }}
+            Due Date: {{ data.item.updateAt }}
           </p>
         </b-tooltip>
       </template>
 
       <!-- Column: Client -->
-      <template #cell(client)="data">
+      <template #cell(pet)="data">
         <b-media vertical-align="center">
           <template #aside>
             <b-avatar
               size="32"
               :src="data.item.avatar"
-              :text="avatarText(data.item.client.name)"
-              :variant="`light-${resolveClientAvatarVariant(data.item.invoiceStatus)}`"
+              :text="avatarText(data.item.pet.name)"
+              :variant="`light-${resolveClientAvatarVariant(data.item.color)}`"
             />
           </template>
           <span class="font-weight-bold d-block text-nowrap">
-            {{ data.item.client.name }}
+            {{ data.item.pet.name }}
           </span>
-          <small class="text-muted">{{ data.item.client.companyEmail }}</small>
         </b-media>
       </template>
 
       <!-- Column: Issued Date -->
-      <template #cell(issuedDate)="data">
+      <template #cell(updateAt)="data">
         <span class="text-nowrap">
           {{ data.value }}
         </span>
-      </template>
-
-      <!-- Column: Balance -->
-      <template #cell(balance)="data">
-        <template v-if="data.value === 0">
-          <b-badge
-            pill
-            variant="light-success"
-          >
-            Paid
-          </b-badge>
-        </template>
-        <template v-else>
-          {{ data.value }}
-        </template>
       </template>
 
       <!-- Column: Actions -->
@@ -202,21 +165,13 @@
                 class="align-middle text-body"
               />
             </template>
-            <b-dropdown-item>
-              <feather-icon icon="DownloadIcon" />
-              <span class="align-middle ml-50">Download</span>
-            </b-dropdown-item>
             <b-dropdown-item :to="{ name: 'apps-invoice-edit', params: { id: data.item.id } }">
               <feather-icon icon="EditIcon" />
-              <span class="align-middle ml-50">Edit</span>
+              <span class="align-middle ml-50">Editar</span>
             </b-dropdown-item>
             <b-dropdown-item>
               <feather-icon icon="TrashIcon" />
-              <span class="align-middle ml-50">Delete</span>
-            </b-dropdown-item>
-            <b-dropdown-item>
-              <feather-icon icon="CopyIcon" />
-              <span class="align-middle ml-50">Duplicate</span>
+              <span class="align-middle ml-50">Deletar</span>
             </b-dropdown-item>
           </b-dropdown>
         </div>
@@ -231,7 +186,7 @@
           sm="6"
           class="d-flex align-items-center justify-content-center justify-content-sm-start"
         >
-          <span class="text-muted">Showing {{ dataMeta.from }} to {{ dataMeta.to }} of {{ dataMeta.of }} entries</span>
+          <span class="text-muted">Exibindo {{ dataMeta.to }} items de {{ dataMeta.of }} items</span>
         </b-col>
         <!-- Pagination -->
         <b-col
@@ -275,10 +230,9 @@
 <script>
 import {
   BCard, BRow, BCol, BFormInput, BButton, BTable, BMedia, BAvatar, BLink,
-  BBadge, BDropdown, BDropdownItem, BPagination, BTooltip,
+  BDropdown, BDropdownItem, BPagination, BTooltip,
 } from 'bootstrap-vue'
 import { avatarText } from '@core/utils/filter'
-import vSelect from 'vue-select'
 import { onUnmounted } from '@vue/composition-api'
 import store from '@/store'
 import useInvoicesList from './useInvoiceList'
@@ -296,13 +250,10 @@ export default {
     BMedia,
     BAvatar,
     BLink,
-    BBadge,
     BDropdown,
     BDropdownItem,
     BPagination,
     BTooltip,
-
-    vSelect,
   },
   setup() {
     const INVOICE_APP_STORE_MODULE_NAME = 'app-invoice'
@@ -314,14 +265,6 @@ export default {
     onUnmounted(() => {
       if (store.hasModule(INVOICE_APP_STORE_MODULE_NAME)) store.unregisterModule(INVOICE_APP_STORE_MODULE_NAME)
     })
-
-    const statusOptions = [
-      'Downloaded',
-      'Draft',
-      'Paid',
-      'Partial Payment',
-      'Past Due',
-    ]
 
     const {
       fetchInvoices,
@@ -360,8 +303,6 @@ export default {
       statusFilter,
 
       refetchData,
-
-      statusOptions,
 
       avatarText,
       resolveInvoiceStatusVariantAndIcon,

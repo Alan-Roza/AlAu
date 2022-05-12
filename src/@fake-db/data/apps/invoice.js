@@ -7,7 +7,7 @@ const data = {
     {
       id: 4987,
       issuedDate: '13 Dec 2019',
-      client: {
+      pet: {
         address: '7777 Mendez Plains',
         company: 'Hall-Robbins PLC',
         companyEmail: 'don85@johnson.com',
@@ -18,14 +18,14 @@ const data = {
       service: 'Software Development',
       total: 3428,
       avatar: '',
-      invoiceStatus: 'Paid',
-      balance: '$724',
-      dueDate: '23 Apr 2019',
+      color: 'Paid',
+      foodAmount: '$724',
+      updateAt: '23 Apr 2019',
     },
     {
       id: 4988,
       issuedDate: '17 Jul 2019',
-      client: {
+      pet: {
         address: '04033 Wesley Wall Apt. 961',
         company: 'Mccann LLC and Sons',
         companyEmail: 'brenda49@taylor.info',
@@ -36,14 +36,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 5219,
       avatar: require('@/assets/images/avatars/10-small.png'),
-      invoiceStatus: 'Downloaded',
-      balance: 0,
-      dueDate: '15 Dec 2019',
+      color: 'Downloaded',
+      foodAmount: 0,
+      updateAt: '15 Dec 2019',
     },
     {
       id: 4989,
       issuedDate: '19 Oct 2019',
-      client: {
+      pet: {
         address: '5345 Robert Squares',
         company: 'Leonard-Garcia and Sons',
         companyEmail: 'smithtiffany@powers.com',
@@ -54,14 +54,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 3719,
       avatar: require('@/assets/images/avatars/1-small.png'),
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '03 Nov 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '03 Nov 2019',
     },
     {
       id: 4990,
       issuedDate: '06 Mar 2020',
-      client: {
+      pet: {
         address: '19022 Clark Parks Suite 149',
         company: 'Smith, Miller and Henry LLC',
         companyEmail: 'mejiageorge@lee-perez.com',
@@ -72,14 +72,14 @@ const data = {
       service: 'Software Development',
       total: 4749,
       avatar: require('@/assets/images/avatars/9-small.png'),
-      invoiceStatus: 'Sent',
-      balance: 0,
-      dueDate: '11 Feb 2020',
+      color: 'Sent',
+      foodAmount: 0,
+      updateAt: '11 Feb 2020',
     },
     {
       id: 4991,
       issuedDate: '08 Feb 2020',
-      client: {
+      pet: {
         address: '8534 Saunders Hill Apt. 583',
         company: 'Garcia-Cameron and Sons',
         companyEmail: 'brandon07@pierce.com',
@@ -90,14 +90,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 4056,
       avatar: require('@/assets/images/avatars/10-small.png'),
-      invoiceStatus: 'Draft',
-      balance: '$815',
-      dueDate: '30 Jun 2019',
+      color: 'Draft',
+      foodAmount: '$815',
+      updateAt: '30 Jun 2019',
     },
     {
       id: 4992,
       issuedDate: '26 Aug 2019',
-      client: {
+      pet: {
         address: '661 Perez Run Apt. 778',
         company: 'Burnett-Young PLC',
         companyEmail: 'guerrerobrandy@beasley-harper.com',
@@ -108,14 +108,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 2771,
       avatar: '',
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '24 Jun 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '24 Jun 2019',
     },
     {
       id: 4993,
       issuedDate: '17 Sep 2019',
-      client: {
+      pet: {
         address: '074 Long Union',
         company: 'Wilson-Lee LLC',
         companyEmail: 'williamshenry@moon-smith.com',
@@ -126,14 +126,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 2713,
       avatar: '',
-      invoiceStatus: 'Draft',
-      balance: '$407',
-      dueDate: '22 Nov 2019',
+      color: 'Draft',
+      foodAmount: '$407',
+      updateAt: '22 Nov 2019',
     },
     {
       id: 4994,
       issuedDate: '11 Feb 2020',
-      client: {
+      pet: {
         address: '5225 Ford Cape Apt. 840',
         company: 'Schwartz, Henry and Rhodes Group',
         companyEmail: 'margaretharvey@russell-murray.com',
@@ -144,14 +144,14 @@ const data = {
       service: 'Template Customization',
       total: 4309,
       avatar: require('@/assets/images/avatars/9-small.png'),
-      invoiceStatus: 'Paid',
-      balance: '-$205',
-      dueDate: '10 Feb 2020',
+      color: 'Paid',
+      foodAmount: '-$205',
+      updateAt: '10 Feb 2020',
     },
     {
       id: 4995,
       issuedDate: '26 Jan 2020',
-      client: {
+      pet: {
         address: '23717 James Club Suite 277',
         company: 'Henderson-Holder PLC',
         companyEmail: 'dianarodriguez@villegas.com',
@@ -162,14 +162,14 @@ const data = {
       service: 'Software Development',
       total: 3367,
       avatar: require('@/assets/images/avatars/2-small.png'),
-      invoiceStatus: 'Downloaded',
-      balance: 0,
-      dueDate: '24 Dec 2019',
+      color: 'Downloaded',
+      foodAmount: 0,
+      updateAt: '24 Dec 2019',
     },
     {
       id: 4996,
       issuedDate: '15 Jan 2020',
-      client: {
+      pet: {
         address: '4528 Myers Gateway',
         company: 'Page-Wise PLC',
         companyEmail: 'bwilson@norris-brock.com',
@@ -180,14 +180,14 @@ const data = {
       service: 'Software Development',
       total: 4776,
       avatar: require('@/assets/images/avatars/9-small.png'),
-      invoiceStatus: 'Downloaded',
-      balance: '$305',
-      dueDate: '02 Jun 2019',
+      color: 'Downloaded',
+      foodAmount: '$305',
+      updateAt: '02 Jun 2019',
     },
     {
       id: 4997,
       issuedDate: '27 Sep 2019',
-      client: {
+      pet: {
         address: '4234 Mills Club Suite 107',
         company: 'Turner PLC Inc',
         companyEmail: 'markcampbell@bell.info',
@@ -198,14 +198,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 3789,
       avatar: require('@/assets/images/avatars/4-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: '$666',
-      dueDate: '18 Mar 2020',
+      color: 'Partial Payment',
+      foodAmount: '$666',
+      updateAt: '18 Mar 2020',
     },
     {
       id: 4998,
       issuedDate: '31 Jul 2019',
-      client: {
+      pet: {
         address: '476 Keith Meadow',
         company: 'Levine-Dorsey PLC',
         companyEmail: 'mary61@rosario.com',
@@ -216,14 +216,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 5200,
       avatar: require('@/assets/images/avatars/5-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: 0,
-      dueDate: '17 Jan 2020',
+      color: 'Partial Payment',
+      foodAmount: 0,
+      updateAt: '17 Jan 2020',
     },
     {
       id: 4999,
       issuedDate: '14 Feb 2020',
-      client: {
+      pet: {
         address: '56381 Ashley Village Apt. 332',
         company: 'Hall, Thompson and Ramirez LLC',
         companyEmail: 'sean22@cook.com',
@@ -234,14 +234,14 @@ const data = {
       service: 'Software Development',
       total: 4558,
       avatar: require('@/assets/images/avatars/7-small.png'),
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '01 Oct 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '01 Oct 2019',
     },
     {
       id: 5000,
       issuedDate: '21 May 2019',
-      client: {
+      pet: {
         address: '6946 Gregory Plaza Apt. 310',
         company: 'Lambert-Thomas Group',
         companyEmail: 'mccoymatthew@lopez-jenkins.net',
@@ -252,14 +252,14 @@ const data = {
       service: 'Template Customization',
       total: 3503,
       avatar: require('@/assets/images/avatars/9-small.png'),
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '22 May 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '22 May 2019',
     },
     {
       id: 5001,
       issuedDate: '30 Jun 2019',
-      client: {
+      pet: {
         address: '64351 Andrew Lights',
         company: 'Gregory-Haynes PLC',
         companyEmail: 'novakshannon@mccarty-murillo.com',
@@ -270,14 +270,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 5285,
       avatar: require('@/assets/images/avatars/2-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: '-$202',
-      dueDate: '02 Aug 2019',
+      color: 'Partial Payment',
+      foodAmount: '-$202',
+      updateAt: '02 Aug 2019',
     },
     {
       id: 5002,
       issuedDate: '21 Jun 2019',
-      client: {
+      pet: {
         address: '5702 Sarah Heights',
         company: 'Wright-Schmidt LLC',
         companyEmail: 'smithrachel@davis-rose.net',
@@ -288,14 +288,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 3668,
       avatar: require('@/assets/images/avatars/6-small.png'),
-      invoiceStatus: 'Downloaded',
-      balance: '$731',
-      dueDate: '15 Dec 2019',
+      color: 'Downloaded',
+      foodAmount: '$731',
+      updateAt: '15 Dec 2019',
     },
     {
       id: 5003,
       issuedDate: '30 Dec 2019',
-      client: {
+      pet: {
         address: '668 Robert Flats',
         company: 'Russell-Abbott Ltd',
         companyEmail: 'scott96@mejia.net',
@@ -306,14 +306,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 4372,
       avatar: '',
-      invoiceStatus: 'Sent',
-      balance: '-$344',
-      dueDate: '17 Sep 2019',
+      color: 'Sent',
+      foodAmount: '-$344',
+      updateAt: '17 Sep 2019',
     },
     {
       id: 5004,
       issuedDate: '27 May 2019',
-      client: {
+      pet: {
         address: '55642 Chang Extensions Suite 373',
         company: 'Williams LLC Inc',
         companyEmail: 'cramirez@ross-bass.biz',
@@ -324,14 +324,14 @@ const data = {
       service: 'Template Customization',
       total: 3198,
       avatar: require('@/assets/images/avatars/7-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: '-$253',
-      dueDate: '16 Aug 2019',
+      color: 'Partial Payment',
+      foodAmount: '-$253',
+      updateAt: '16 Aug 2019',
     },
     {
       id: 5005,
       issuedDate: '30 Jul 2019',
-      client: {
+      pet: {
         address: '56694 Eric Orchard',
         company: 'Hudson, Bell and Phillips PLC',
         companyEmail: 'arielberg@wolfe-smith.com',
@@ -342,14 +342,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 5293,
       avatar: '',
-      invoiceStatus: 'Past Due',
-      balance: 0,
-      dueDate: '01 Aug 2019',
+      color: 'Past Due',
+      foodAmount: 0,
+      updateAt: '01 Aug 2019',
     },
     {
       id: 5006,
       issuedDate: '10 Jun 2019',
-      client: {
+      pet: {
         address: '3727 Emma Island Suite 879',
         company: 'Berry, Gonzalez and Heath Inc',
         companyEmail: 'yrobinson@nichols.com',
@@ -360,14 +360,14 @@ const data = {
       service: 'Template Customization',
       total: 5612,
       avatar: require('@/assets/images/avatars/6-small.png'),
-      invoiceStatus: 'Downloaded',
-      balance: '$883',
-      dueDate: '12 Apr 2019',
+      color: 'Downloaded',
+      foodAmount: '$883',
+      updateAt: '12 Apr 2019',
     },
     {
       id: 5007,
       issuedDate: '01 Feb 2020',
-      client: {
+      pet: {
         address: '953 Miller Common Suite 580',
         company: 'Martinez, Fuller and Chavez and Sons',
         companyEmail: 'tatejennifer@allen.net',
@@ -378,14 +378,14 @@ const data = {
       service: 'Software Development',
       total: 2230,
       avatar: require('@/assets/images/avatars/1-small.png'),
-      invoiceStatus: 'Sent',
-      balance: 0,
-      dueDate: '19 Nov 2019',
+      color: 'Sent',
+      foodAmount: 0,
+      updateAt: '19 Nov 2019',
     },
     {
       id: 5008,
       issuedDate: '22 Mar 2020',
-      client: {
+      pet: {
         address: '808 Sullivan Street Apt. 135',
         company: 'Wilson and Sons LLC',
         companyEmail: 'gdurham@lee.com',
@@ -396,14 +396,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 2032,
       avatar: require('@/assets/images/avatars/8-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: 0,
-      dueDate: '30 Nov 2019',
+      color: 'Partial Payment',
+      foodAmount: 0,
+      updateAt: '30 Nov 2019',
     },
     {
       id: 5009,
       issuedDate: '30 Nov 2019',
-      client: {
+      pet: {
         address: '25135 Christopher Creek',
         company: 'Hawkins, Johnston and Mcguire PLC',
         companyEmail: 'jenny96@lawrence-thompson.com',
@@ -414,14 +414,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 3128,
       avatar: require('@/assets/images/avatars/3-small.png'),
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '10 Sep 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '10 Sep 2019',
     },
     {
       id: 5010,
       issuedDate: '06 Jan 2020',
-      client: {
+      pet: {
         address: '81285 Rebecca Estates Suite 046',
         company: 'Huynh-Mills and Sons',
         companyEmail: 'jgutierrez@jackson.com',
@@ -432,14 +432,14 @@ const data = {
       service: 'Software Development',
       total: 2060,
       avatar: require('@/assets/images/avatars/2-small.png'),
-      invoiceStatus: 'Downloaded',
-      balance: 0,
-      dueDate: '08 Dec 2019',
+      color: 'Downloaded',
+      foodAmount: 0,
+      updateAt: '08 Dec 2019',
     },
     {
       id: 5011,
       issuedDate: '01 Jun 2019',
-      client: {
+      pet: {
         address: '3102 Briggs Dale Suite 118',
         company: 'Jones-Cooley and Sons',
         companyEmail: 'hunter14@jones.com',
@@ -450,14 +450,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 4077,
       avatar: '',
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '01 Feb 2020',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '01 Feb 2020',
     },
     {
       id: 5012,
       issuedDate: '30 Oct 2019',
-      client: {
+      pet: {
         address: '811 Jill Skyway',
         company: 'Jones PLC Ltd',
         companyEmail: 'pricetodd@johnson-jenkins.com',
@@ -468,14 +468,14 @@ const data = {
       service: 'Template Customization',
       total: 2872,
       avatar: require('@/assets/images/avatars/4-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: 0,
-      dueDate: '18 Oct 2019',
+      color: 'Partial Payment',
+      foodAmount: 0,
+      updateAt: '18 Oct 2019',
     },
     {
       id: 5013,
       issuedDate: '05 Feb 2020',
-      client: {
+      pet: {
         address: '2223 Brandon Inlet Suite 597',
         company: 'Jordan, Gomez and Ross Group',
         companyEmail: 'perrydavid@chapman-rogers.com',
@@ -486,14 +486,14 @@ const data = {
       service: 'Software Development',
       total: 3740,
       avatar: require('@/assets/images/avatars/10-small.png'),
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '01 Nov 2019',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '01 Nov 2019',
     },
     {
       id: 5014,
       issuedDate: '01 Dec 2019',
-      client: {
+      pet: {
         address: '08724 Barry Causeway',
         company: 'Gonzalez, Moody and Glover LLC',
         companyEmail: 'leahgriffin@carpenter.com',
@@ -504,14 +504,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 3623,
       avatar: '',
-      invoiceStatus: 'Downloaded',
-      balance: 0,
-      dueDate: '23 Sep 2019',
+      color: 'Downloaded',
+      foodAmount: 0,
+      updateAt: '23 Sep 2019',
     },
     {
       id: 5015,
       issuedDate: '16 Apr 2019',
-      client: {
+      pet: {
         address: '073 Holt Ramp Apt. 755',
         company: 'Ashley-Pacheco Ltd',
         companyEmail: 'esparzadaniel@allen.com',
@@ -522,14 +522,14 @@ const data = {
       service: 'Software Development',
       total: 2477,
       avatar: require('@/assets/images/avatars/7-small.png'),
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '01 Apr 2019',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '01 Apr 2019',
     },
     {
       id: 5016,
       issuedDate: '24 Jan 2020',
-      client: {
+      pet: {
         address: '984 Sherry Trail Apt. 953',
         company: 'Berry PLC Group',
         companyEmail: 'todd34@owens-morgan.com',
@@ -540,14 +540,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 3904,
       avatar: '',
-      invoiceStatus: 'Paid',
-      balance: '$951',
-      dueDate: '30 Sep 2019',
+      color: 'Paid',
+      foodAmount: '$951',
+      updateAt: '30 Sep 2019',
     },
     {
       id: 5017,
       issuedDate: '24 Feb 2020',
-      client: {
+      pet: {
         address: '093 Jonathan Camp Suite 953',
         company: 'Allen Group Ltd',
         companyEmail: 'roydavid@bailey.com',
@@ -558,14 +558,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 3102,
       avatar: require('@/assets/images/avatars/1-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: '-$153',
-      dueDate: '25 Aug 2019',
+      color: 'Partial Payment',
+      foodAmount: '-$153',
+      updateAt: '25 Aug 2019',
     },
     {
       id: 5018,
       issuedDate: '29 Feb 2020',
-      client: {
+      pet: {
         address: '4735 Kristie Islands Apt. 259',
         company: 'Chapman-Schneider LLC',
         companyEmail: 'baldwinjoel@washington.com',
@@ -576,14 +576,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 2483,
       avatar: require('@/assets/images/avatars/5-small.png'),
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '10 Jul 2019',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '10 Jul 2019',
     },
     {
       id: 5019,
       issuedDate: '07 Aug 2019',
-      client: {
+      pet: {
         address: '92218 Andrew Radial',
         company: 'Mcclure, Hernandez and Simon Ltd',
         companyEmail: 'psmith@morris.info',
@@ -594,14 +594,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 2825,
       avatar: require('@/assets/images/avatars/8-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: '-$459',
-      dueDate: '14 Oct 2019',
+      color: 'Partial Payment',
+      foodAmount: '-$459',
+      updateAt: '14 Oct 2019',
     },
     {
       id: 5020,
       issuedDate: '10 May 2019',
-      client: {
+      pet: {
         address: '2342 Michelle Valley',
         company: 'Hamilton PLC and Sons',
         companyEmail: 'lori06@morse.com',
@@ -612,14 +612,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 2029,
       avatar: require('@/assets/images/avatars/4-small.png'),
-      invoiceStatus: 'Past Due',
-      balance: 0,
-      dueDate: '28 Mar 2019',
+      color: 'Past Due',
+      foodAmount: 0,
+      updateAt: '28 Mar 2019',
     },
     {
       id: 5021,
       issuedDate: '02 Apr 2019',
-      client: {
+      pet: {
         address: '16039 Brittany Terrace Apt. 128',
         company: 'Silva-Reeves LLC',
         companyEmail: 'zpearson@miller.com',
@@ -630,14 +630,14 @@ const data = {
       service: 'Software Development',
       total: 3208,
       avatar: '',
-      invoiceStatus: 'Sent',
-      balance: 0,
-      dueDate: '06 Sep 2019',
+      color: 'Sent',
+      foodAmount: 0,
+      updateAt: '06 Sep 2019',
     },
     {
       id: 5022,
       issuedDate: '02 May 2019',
-      client: {
+      pet: {
         address: '37856 Olsen Lakes Apt. 852',
         company: 'Solis LLC Ltd',
         companyEmail: 'strongpenny@young.net',
@@ -648,14 +648,14 @@ const data = {
       service: 'Software Development',
       total: 3077,
       avatar: '',
-      invoiceStatus: 'Sent',
-      balance: 0,
-      dueDate: '09 May 2019',
+      color: 'Sent',
+      foodAmount: 0,
+      updateAt: '09 May 2019',
     },
     {
       id: 5023,
       issuedDate: '23 Mar 2020',
-      client: {
+      pet: {
         address: '11489 Griffin Plaza Apt. 927',
         company: 'Munoz-Peters and Sons',
         companyEmail: 'carrietorres@acosta.com',
@@ -666,14 +666,14 @@ const data = {
       service: 'Software Development',
       total: 5578,
       avatar: require('@/assets/images/avatars/9-small.png'),
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '23 Jul 2019',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '23 Jul 2019',
     },
     {
       id: 5024,
       issuedDate: '28 Sep 2019',
-      client: {
+      pet: {
         address: '276 Michael Gardens Apt. 004',
         company: 'Shea, Velez and Garcia LLC',
         companyEmail: 'zjohnson@nichols-powers.com',
@@ -684,14 +684,14 @@ const data = {
       service: 'Software Development',
       total: 2787,
       avatar: require('@/assets/images/avatars/1-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: 0,
-      dueDate: '25 Sep 2019',
+      color: 'Partial Payment',
+      foodAmount: 0,
+      updateAt: '25 Sep 2019',
     },
     {
       id: 5025,
       issuedDate: '21 Feb 2020',
-      client: {
+      pet: {
         address: '633 Bell Well Apt. 057',
         company: 'Adams, Simmons and Brown Group',
         companyEmail: 'kayla09@thomas.com',
@@ -702,14 +702,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 5591,
       avatar: '',
-      invoiceStatus: 'Downloaded',
-      balance: 0,
-      dueDate: '07 Jun 2019',
+      color: 'Downloaded',
+      foodAmount: 0,
+      updateAt: '07 Jun 2019',
     },
     {
       id: 5026,
       issuedDate: '24 May 2019',
-      client: {
+      pet: {
         address: '1068 Lopez Fall',
         company: 'Williams-Lawrence and Sons',
         companyEmail: 'melvindavis@allen.info',
@@ -720,14 +720,14 @@ const data = {
       service: 'Template Customization',
       total: 2783,
       avatar: require('@/assets/images/avatars/6-small.png'),
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '22 Oct 2019',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '22 Oct 2019',
     },
     {
       id: 5027,
       issuedDate: '13 Jan 2020',
-      client: {
+      pet: {
         address: '86691 Mackenzie Light Suite 568',
         company: 'Deleon Inc LLC',
         companyEmail: 'gjordan@fernandez-coleman.com',
@@ -738,14 +738,14 @@ const data = {
       service: 'Template Customization',
       total: 2719,
       avatar: '',
-      invoiceStatus: 'Sent',
-      balance: 0,
-      dueDate: '04 Feb 2020',
+      color: 'Sent',
+      foodAmount: 0,
+      updateAt: '04 Feb 2020',
     },
     {
       id: 5028,
       issuedDate: '18 May 2019',
-      client: {
+      pet: {
         address: '86580 Sarah Bridge',
         company: 'Farmer, Johnson and Anderson Group',
         companyEmail: 'robertscott@garcia.com',
@@ -756,14 +756,14 @@ const data = {
       service: 'Template Customization',
       total: 3325,
       avatar: '',
-      invoiceStatus: 'Paid',
-      balance: '$361',
-      dueDate: '02 Mar 2020',
+      color: 'Paid',
+      foodAmount: '$361',
+      updateAt: '02 Mar 2020',
     },
     {
       id: 5029,
       issuedDate: '29 Oct 2019',
-      client: {
+      pet: {
         address: '49709 Edwin Ports Apt. 353',
         company: 'Sherman-Johnson PLC',
         companyEmail: 'desiree61@kelly.com',
@@ -774,14 +774,14 @@ const data = {
       service: 'Template Customization',
       total: 3851,
       avatar: '',
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '25 Aug 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '25 Aug 2019',
     },
     {
       id: 5030,
       issuedDate: '07 Apr 2019',
-      client: {
+      pet: {
         address: '3856 Mathis Squares Apt. 584',
         company: 'Byrd LLC PLC',
         companyEmail: 'jeffrey25@martinez-hodge.com',
@@ -792,14 +792,14 @@ const data = {
       service: 'Template Customization',
       total: 5565,
       avatar: '',
-      invoiceStatus: 'Draft',
-      balance: 0,
-      dueDate: '06 Mar 2020',
+      color: 'Draft',
+      foodAmount: 0,
+      updateAt: '06 Mar 2020',
     },
     {
       id: 5031,
       issuedDate: '21 Aug 2019',
-      client: {
+      pet: {
         address: '141 Adrian Ridge Suite 550',
         company: 'Stone-Zimmerman Group',
         companyEmail: 'john77@anderson.net',
@@ -810,14 +810,14 @@ const data = {
       service: 'Template Customization',
       total: 3313,
       avatar: require('@/assets/images/avatars/3-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: 0,
-      dueDate: '09 Jun 2019',
+      color: 'Partial Payment',
+      foodAmount: 0,
+      updateAt: '09 Jun 2019',
     },
     {
       id: 5032,
       issuedDate: '31 May 2019',
-      client: {
+      pet: {
         address: '01871 Kristy Square',
         company: 'Yang, Hansen and Hart PLC',
         companyEmail: 'ywagner@jones.com',
@@ -828,14 +828,14 @@ const data = {
       service: 'Template Customization',
       total: 5181,
       avatar: '',
-      invoiceStatus: 'Past Due',
-      balance: 0,
-      dueDate: '22 Oct 2019',
+      color: 'Past Due',
+      foodAmount: 0,
+      updateAt: '22 Oct 2019',
     },
     {
       id: 5033,
       issuedDate: '12 Jul 2019',
-      client: {
+      pet: {
         address: '075 Smith Views',
         company: 'Jenkins-Rosales Inc',
         companyEmail: 'calvin07@joseph-edwards.org',
@@ -846,14 +846,14 @@ const data = {
       service: 'Template Customization',
       total: 2869,
       avatar: require('@/assets/images/avatars/1-small.png'),
-      invoiceStatus: 'Partial Payment',
-      balance: 0,
-      dueDate: '22 Mar 2020',
+      color: 'Partial Payment',
+      foodAmount: 0,
+      updateAt: '22 Mar 2020',
     },
     {
       id: 5034,
       issuedDate: '10 Jul 2019',
-      client: {
+      pet: {
         address: '2577 Pearson Overpass Apt. 314',
         company: 'Mason-Reed PLC',
         companyEmail: 'eric47@george-castillo.com',
@@ -864,14 +864,14 @@ const data = {
       service: 'Unlimited Extended License',
       total: 4836,
       avatar: '',
-      invoiceStatus: 'Paid',
-      balance: 0,
-      dueDate: '22 Oct 2019',
+      color: 'Paid',
+      foodAmount: 0,
+      updateAt: '22 Oct 2019',
     },
     {
       id: 5035,
       issuedDate: '20 Jul 2019',
-      client: {
+      pet: {
         address: '1770 Sandra Mountains Suite 636',
         company: 'Foster-Pham PLC',
         companyEmail: 'jamesjoel@chapman.net',
@@ -882,14 +882,14 @@ const data = {
       service: 'UI/UX Design & Development',
       total: 4263,
       avatar: '',
-      invoiceStatus: 'Draft',
-      balance: '$762',
-      dueDate: '12 Jun 2019',
+      color: 'Draft',
+      foodAmount: '$762',
+      updateAt: '12 Jun 2019',
     },
     {
       id: 5036,
       issuedDate: '19 Apr 2019',
-      client: {
+      pet: {
         address: '78083 Laura Pines',
         company: 'Richardson and Sons LLC',
         companyEmail: 'pwillis@cross.org',
@@ -900,9 +900,9 @@ const data = {
       service: 'Unlimited Extended License',
       total: 3171,
       avatar: require('@/assets/images/avatars/9-small.png'),
-      invoiceStatus: 'Paid',
-      balance: '-$205',
-      dueDate: '25 Sep 2019',
+      color: 'Paid',
+      foodAmount: '-$205',
+      updateAt: '25 Sep 2019',
     },
   ],
 }
@@ -920,8 +920,8 @@ mock.onGet('/apps/invoice/invoices').reply(config => {
   const filteredData = data.invoices.filter(
     invoice =>
       /* eslint-disable operator-linebreak, implicit-arrow-linebreak */
-      (invoice.client.companyEmail.toLowerCase().includes(queryLowered) ||
-        invoice.client.name.toLowerCase().includes(queryLowered)) &&
+      (invoice.pet.companyEmail.toLowerCase().includes(queryLowered) ||
+        invoice.pet.name.toLowerCase().includes(queryLowered)) &&
       invoice.invoiceStatus === (status || invoice.invoiceStatus),
   )
   /* eslint-enable  */

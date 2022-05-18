@@ -2,6 +2,9 @@ const path = require('path')
 
 module.exports = {
   publicPath: '/',
+  devServer: {
+    proxy: 'https://upx-backend-whntohr7oq-rj.a.run.app/',
+  },
   css: {
     loaderOptions: {
       sass: {

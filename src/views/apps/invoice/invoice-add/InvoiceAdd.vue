@@ -23,17 +23,17 @@
                   <div class="logo-wrapper">
                     <logo />
                     <h3 class="text-primary invoice-logo">
-                      Vuexy
+                      AlAu
                     </h3>
                   </div>
                   <b-card-text class="mb-25">
-                    Office 149, 450 South Brand Brooklyn
+                    Através desta seção será possível adicionar
                   </b-card-text>
                   <b-card-text class="mb-25">
-                    San Diego County, CA 91905, USA
+                    novos schedules para o suprimento
                   </b-card-text>
                   <b-card-text class="mb-0">
-                    +1 (123) 456 7891, +44 (876) 543 2198
+                    automático do recipiente de alimentos.
                   </b-card-text>
                 </div>
 
@@ -41,7 +41,7 @@
                 <div class="invoice-number-date mt-md-0 mt-2">
                   <div class="d-flex align-items-center justify-content-md-end mb-1">
                     <h4 class="invoice-title">
-                      Invoice
+                      Id
                     </h4>
                     <b-input-group class="input-group-merge invoice-edit-input-group disabled">
                       <b-input-group-prepend is-text>
@@ -56,20 +56,12 @@
                   </div>
                   <div class="d-flex align-items-center mb-1">
                     <span class="title">
-                      Date:
+                      Data Criação:
                     </span>
                     <flat-pickr
                       v-model="invoiceData.issuedDate"
                       class="form-control invoice-edit-input"
-                    />
-                  </div>
-                  <div class="d-flex align-items-center">
-                    <span class="title">
-                      Due Date:
-                    </span>
-                    <flat-pickr
-                      v-model="invoiceData.dueDate"
-                      class="form-control invoice-edit-input"
+                      disabled
                     />
                   </div>
                 </div>
@@ -92,14 +84,14 @@
                   class="mb-lg-1"
                 >
                   <h6 class="mb-2">
-                    Invoice To:
+                    Operação:
                   </h6>
 
                   <!-- Select Client -->
                   <v-select
-                    v-model="invoiceData.client"
+                    v-model="invoiceData.op"
                     :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                    :options="clients"
+                    :options="op"
                     label="company"
                     input-id="invoice-data-client"
                     :clearable="false"
@@ -117,6 +109,63 @@
                       </li>
                     </template>
                   </v-select>
+
+                  <div class=" mb-1 mt-2">
+                    <span class="title">
+                      Data Criação:
+                    </span>
+                    <flat-pickr
+                      class="form-control"
+                      :config="{ enableTime: true, dateFormat: 'H:i'}"
+                    />
+                  </div>
+
+                  <validation-provider
+                    #default="validationContext"
+                    name="Start Date"
+                    rules="required"
+                  >
+
+                    <b-form-group
+                      label="Start Date"
+                      label-for="start-date"
+                      :state="getValidationState(validationContext)"
+                    >
+                      <flat-pickr
+                        v-model="eventLocal.start"
+                        class="form-control"
+                        :config="{ enableTime: true, dateFormat: 'H:i'}"
+                      />
+                      <b-form-invalid-feedback :state="getValidationState(validationContext)">
+                        {{ validationContext.errors[0] }}
+                      </b-form-invalid-feedback>
+                    </b-form-group>
+                  </validation-provider>
+
+                  <!-- Title -->
+                  <validation-provider
+                    #default="validationContext"
+                    name="Title"
+                    rules="required"
+                  >
+                    <b-form-group
+                      label="Title"
+                      label-for="event-title"
+                    >
+                      <b-form-input
+                        id="event-title"
+                        v-model="eventLocal.title"
+                        autofocus
+                        :state="getValidationState(validationContext)"
+                        trim
+                        placeholder="Event Title"
+                      />
+
+                      <b-form-invalid-feedback>
+                        {{ validationContext.errors[0] }}
+                      </b-form-invalid-feedback>
+                    </b-form-group>
+                  </validation-provider>
 
                   <!-- Selected Client -->
                   <div
@@ -189,308 +238,6 @@
                 </b-col>
               </b-row>
             </b-card-body>
-
-            <!-- Items Section -->
-            <b-card-body class="invoice-padding form-item-section">
-              <div
-                ref="form"
-                class="repeater-form"
-                :style="{height: trHeight}"
-              >
-                <b-row
-                  v-for="(item, index) in invoiceData.items"
-                  :key="index"
-                  ref="row"
-                  class="pb-2"
-                >
-
-                  <!-- Item Form -->
-                  <!-- ? This will be in loop => So consider below markup for single item -->
-                  <b-col cols="12">
-
-                    <!-- ? Flex to keep separate width for XIcon and SettingsIcon -->
-                    <div class="d-none d-lg-flex">
-                      <b-row class="flex-grow-1 px-1">
-                        <!-- Single Item Form Headers -->
-                        <b-col
-                          cols="12"
-                          lg="5"
-                        >
-                          Item
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="3"
-                        >
-                          Cost
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="2"
-                        >
-                          Qty
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="2"
-                        >
-                          Price
-                        </b-col>
-                      </b-row>
-                      <div class="form-item-action-col" />
-                    </div>
-
-                    <!-- Form Input Fields OR content inside bordered area  -->
-                    <!-- ? Flex to keep separate width for XIcon and SettingsIcon -->
-                    <div class="d-flex border rounded">
-                      <b-row class="flex-grow-1 p-2">
-                        <!-- Single Item Form Headers -->
-                        <b-col
-                          cols="12"
-                          lg="5"
-                        >
-                          <label class="d-inline d-lg-none">Item</label>
-                          <v-select
-                            v-model="item.itemTitle"
-                            :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                            :options="itemsOptions"
-                            label="itemTitle"
-                            :clearable="false"
-                            class="mb-2 item-selector-title"
-                            placeholder="Select Item"
-                            @input="val => updateItemForm(index, val)"
-                          />
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="3"
-                        >
-                          <label class="d-inline d-lg-none">Cost</label>
-                          <b-form-input
-                            v-model="item.cost"
-                            type="number"
-                            class="mb-2"
-                          />
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="2"
-                        >
-                          <label class="d-inline d-lg-none">Qty</label>
-                          <b-form-input
-                            v-model="item.qty"
-                            type="number"
-                            class="mb-2"
-                          />
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="2"
-                        >
-                          <label class="d-inline d-lg-none">Price</label>
-                          <p class="mb-1">
-                            ${{ item.cost * item.qty }}
-                          </p>
-                        </b-col>
-                        <b-col
-                          cols="12"
-                          lg="5"
-                        >
-                          <label class="d-inline d-lg-none">Description</label>
-                          <b-form-textarea
-                            v-model="item.description"
-                            class="mb-2 mb-lg-0"
-                          />
-                        </b-col>
-                        <b-col>
-                          <p class="mb-0">
-                            Discount: 0% 0% 0%
-                          </p>
-                        </b-col>
-                      </b-row>
-                      <div class="d-flex flex-column justify-content-between border-left py-50 px-25">
-                        <feather-icon
-                          size="16"
-                          icon="XIcon"
-                          class="cursor-pointer"
-                          @click="removeItem(index)"
-                        />
-                        <feather-icon
-                          :id="`form-item-settings-icon-${index}`"
-                          size="16"
-                          icon="SettingsIcon"
-                          class="cursor-pointer"
-                        />
-
-                        <!-- Setting Item Form -->
-                        <b-popover
-                          :ref="`form-item-settings-popover-${index}`"
-                          :target="`form-item-settings-icon-${index}`"
-                          triggers="click"
-                          placement="lefttop"
-                        >
-                          <b-form @submit.prevent>
-                            <b-row>
-
-                              <!-- Field: Discount -->
-                              <b-col cols="12">
-                                <b-form-group
-                                  label="Discount(%)"
-                                  :label-for="`setting-item-${index}-discount`"
-                                >
-                                  <b-form-input
-                                    :id="`setting-item-${index}-discount`"
-                                    :value="null"
-                                    type="number"
-                                  />
-                                </b-form-group>
-                              </b-col>
-
-                              <!-- Field: Tax 1 -->
-                              <b-col cols="6">
-                                <b-form-group
-                                  label="Tax 1"
-                                  :label-for="`setting-item-${index}-tax-1`"
-                                >
-                                  <v-select
-                                    :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                                    :value="'10%'"
-                                    :options="['0%', '1%', '10%', '14%', '18%']"
-                                    :input-id="`setting-item-${index}-tax-1`"
-                                    :clearable="false"
-                                  />
-                                </b-form-group>
-                              </b-col>
-
-                              <!-- Field: Tax 2 -->
-                              <b-col cols="6">
-                                <b-form-group
-                                  label="Tax 2"
-                                  :label-for="`setting-item-${index}-tax-2`"
-                                >
-                                  <v-select
-                                    :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                                    :value="'10%'"
-                                    :options="['0%', '1%', '10%', '14%', '18%']"
-                                    :input-id="`setting-item-${index}-tax-2`"
-                                    :clearable="false"
-                                  />
-                                </b-form-group>
-                              </b-col>
-
-                              <b-col
-                                cols="12"
-                                class="d-flex justify-content-between mt-1"
-                              >
-                                <b-button
-                                  variant="outline-primary"
-                                  @click="() => {$refs[`form-item-settings-popover-${index}`][0].$emit('close')}"
-                                >
-                                  Apply
-                                </b-button>
-                                <b-button
-                                  variant="outline-secondary"
-                                  @click="() => {$refs[`form-item-settings-popover-${index}`][0].$emit('close')}"
-                                >
-                                  Cancel
-                                </b-button>
-                              </b-col>
-                            </b-row>
-                          </b-form>
-                        </b-popover>
-                      </div>
-                    </div>
-                  </b-col>
-                </b-row>
-              </div>
-              <b-button
-                v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-                size="sm"
-                variant="primary"
-                @click="addNewItemInItemForm"
-              >
-                Add Item
-              </b-button>
-            </b-card-body>
-
-            <!-- Invoice Description: Total -->
-            <b-card-body class="invoice-padding pb-0">
-              <b-row>
-
-                <!-- Col: Sales Persion -->
-                <b-col
-                  cols="12"
-                  md="6"
-                  class="mt-md-0 mt-3 d-flex align-items-center"
-                  order="2"
-                  order-md="1"
-                >
-                  <label
-                    for="invoice-data-sales-person"
-                    class="text-nowrap mr-50"
-                  >Sales Person:</label>
-                  <b-form-input
-                    id="invoice-data-sales-person"
-                    v-model="invoiceData.salesPerson"
-                    placeholder="Edward Crowley"
-                  />
-                </b-col>
-
-                <!-- Col: Total -->
-                <b-col
-                  cols="12"
-                  md="6"
-                  class="mt-md-6 d-flex justify-content-end"
-                  order="1"
-                  order-md="2"
-                >
-                  <div class="invoice-total-wrapper">
-                    <div class="invoice-total-item">
-                      <p class="invoice-total-title">
-                        Subtotal:
-                      </p>
-                      <p class="invoice-total-amount">
-                        $1800
-                      </p>
-                    </div>
-                    <div class="invoice-total-item">
-                      <p class="invoice-total-title">
-                        Discount:
-                      </p>
-                      <p class="invoice-total-amount">
-                        $28
-                      </p>
-                    </div>
-                    <div class="invoice-total-item">
-                      <p class="invoice-total-title">
-                        Tax:
-                      </p>
-                      <p class="invoice-total-amount">
-                        21%
-                      </p>
-                    </div>
-                    <hr class="my-50">
-                    <div class="invoice-total-item">
-                      <p class="invoice-total-title">
-                        Total:
-                      </p>
-                      <p class="invoice-total-amount">
-                        $1690
-                      </p>
-                    </div>
-                  </div>
-                </b-col>
-              </b-row>
-            </b-card-body>
-
-            <!-- Spacer -->
-            <hr class="invoice-spacing">
-
-            <!-- Note -->
-            <b-card-body class="invoice-padding pt-0">
-              <span class="font-weight-bold">Note: </span>
-              <b-form-textarea v-model="invoiceData.note" />
-            </b-card-body>
           </b-card>
         </b-form>
       </b-col>
@@ -532,6 +279,7 @@
             v-ripple.400="'rgba(113, 102, 240, 0.15)'"
             variant="outline-primary"
             block
+            @click="sendSchedule()"
           >
             Save
           </b-button>
@@ -597,10 +345,11 @@ import { heightTransition } from '@core/mixins/ui/transition'
 import Ripple from 'vue-ripple-directive'
 import store from '@/store'
 import {
-  BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormGroup, BFormInput, BInputGroup, BInputGroupPrepend, BFormTextarea, BFormCheckbox, BPopover, VBToggle,
+  BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormGroup, BFormInput, BInputGroup, BInputGroupPrepend, BFormCheckbox, VBToggle,
 } from 'bootstrap-vue'
 import vSelect from 'vue-select'
 import flatPickr from 'vue-flatpickr-component'
+import axios from 'axios'
 import invoiceStoreModule from '../invoiceStoreModule'
 import InvoiceSidebarAddNewCustomer from '../InvoiceSidebarAddNewCustomer.vue'
 
@@ -617,9 +366,7 @@ export default {
     BFormInput,
     BInputGroup,
     BInputGroupPrepend,
-    BFormTextarea,
     BFormCheckbox,
-    BPopover,
     flatPickr,
     vSelect,
     Logo,
@@ -662,6 +409,16 @@ export default {
         this.trSetHeight(this.$refs.form.scrollHeight)
       })
     },
+    async sendSchedule() {
+      const body = {
+        id: 'Alan',
+        name: 'Alimentação da noite',
+        cron: '0 19 * * *',
+        op: 'feed',
+      }
+      const response = await axios.post('/addSchedule', body)
+      console.log(response)
+    },
   },
   setup() {
     const INVOICE_APP_STORE_MODULE_NAME = 'app-invoice'
@@ -674,9 +431,9 @@ export default {
       if (store.hasModule(INVOICE_APP_STORE_MODULE_NAME)) store.unregisterModule(INVOICE_APP_STORE_MODULE_NAME)
     })
 
-    const clients = ref([])
+    const op = ref([])
     store.dispatch('app-invoice/fetchClients')
-      .then(response => { clients.value = response.data })
+      .then(response => { op.value = response.data })
 
     const itemFormBlankItem = {
       item: null,
@@ -739,7 +496,7 @@ export default {
 
     return {
       invoiceData,
-      clients,
+      op,
       itemsOptions,
       updateItemForm,
       itemFormBlankItem,

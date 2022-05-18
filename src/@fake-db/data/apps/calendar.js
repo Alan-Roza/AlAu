@@ -24,9 +24,9 @@ const data = {
       id: 2,
       url: '',
       title: 'Meeting With Client',
-      start: new Date(date.getFullYear(), date.getMonth() + 1, -11),
-      end: new Date(date.getFullYear(), date.getMonth() + 1, -10),
-      allDay: true,
+      start: new Date('2022, 05'),
+      end: nextMonth,
+      allDay: false,
       extendedProps: {
         calendar: 'Business',
       },

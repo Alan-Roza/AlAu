@@ -20,7 +20,7 @@
             variant="primary"
             :to="{ name: 'apps-invoice-add'}"
           >
-            Adicionar Pet
+            Adicionar
           </b-button>
         </b-col>
 

@@ -132,7 +132,7 @@
                 <flat-pickr
                   v-model="eventLocal.start"
                   class="form-control"
-                  :config="{ enableTime: true, dateFormat: 'Y-m-d H:i'}"
+                  :config="{ enableTime: true, dateFormat: 'H:i'}"
                 />
                 <b-form-invalid-feedback :state="getValidationState(validationContext)">
                   {{ validationContext.errors[0] }}

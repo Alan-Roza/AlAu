@@ -77,7 +77,7 @@
                 block
                 :disabled="invalid"
               >
-                Sign in
+                Entrar
               </b-button>
             </b-form>
           </validation-observer>
@@ -90,8 +90,8 @@
 
 <script>
 /* eslint-disable global-require */
-import { ValidationProvider, ValidationObserver } from "vee-validate";
-import VuexyLogo from "@core/layouts/components/Logo.vue";
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
+import VuexyLogo from '@core/layouts/components/Logo.vue'
 import {
   BRow,
   BCol,
@@ -108,18 +108,18 @@ import {
   BButton,
   BAlert,
   VBTooltip,
-} from "bootstrap-vue";
-import useJwt from "@/auth/jwt/useJwt";
-import { required, email } from "@validations";
-import { togglePasswordVisibility } from "@core/mixins/ui/forms";
-import store from "@/store/index";
-import { getHomeRouteForLoggedInUser } from "@/auth/utils";
+} from 'bootstrap-vue'
+import useJwt from '@/auth/jwt/useJwt'
+import { required } from '@validations'
+import { togglePasswordVisibility } from '@core/mixins/ui/forms'
+import store from '@/store/index'
+import { getHomeRouteForLoggedInUser } from '@/auth/utils'
 
-import ToastificationContent from "@core/components/toastification/ToastificationContent.vue";
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 
 export default {
   directives: {
-    "b-tooltip": VBTooltip,
+    'b-tooltip': VBTooltip,
   },
   components: {
     BRow,
@@ -127,40 +127,36 @@ export default {
     BLink,
     BFormGroup,
     BFormInput,
-    BInputGroupAppend,
-    BInputGroup,
-    BFormCheckbox,
     BCardText,
     BCardTitle,
     BImg,
     BForm,
     BButton,
     BAlert,
-    VuexyLogo,
     ValidationProvider,
     ValidationObserver,
   },
   mixins: [togglePasswordVisibility],
   data() {
     return {
-      userName: "",
-      sideImg: require("@/assets/images/pages/login-v2.svg"),
+      userName: '',
+      sideImg: require('@/assets/images/pages/login-v2.svg'),
 
       // validation rules
       required,
-    };
+    }
   },
   computed: {
     passwordToggleIcon() {
-      return this.passwordFieldType === "password" ? "EyeIcon" : "EyeOffIcon";
+      return this.passwordFieldType === 'password' ? 'EyeIcon' : 'EyeOffIcon'
     },
     imgUrl() {
-      if (store.state.appConfig.layout.skin === "dark") {
+      if (store.state.appConfig.layout.skin === 'dark') {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        this.sideImg = require("@/assets/images/pages/dog.svg");
-        return this.sideImg;
+        this.sideImg = require('@/assets/images/pages/dog.svg')
+        return this.sideImg
       }
-      return this.sideImg;
+      return this.sideImg
     },
   },
   methods: {
@@ -169,22 +165,22 @@ export default {
         if (success) {
           useJwt
             .login({
-              email: "admin@demo.com",
-              password: "admin",
+              email: 'admin@demo.com',
+              password: 'admin',
             })
             .then((response) => {
-              const { userData } = response.data;
-              useJwt.setToken(response.data.accessToken);
-              useJwt.setRefreshToken(response.data.refreshToken);
-              localStorage.setItem("userData", JSON.stringify(userData));
-              this.$ability.update(userData.ability);
+              const { userData } = response.data
+              useJwt.setToken(response.data.accessToken)
+              useJwt.setRefreshToken(response.data.refreshToken)
+              localStorage.setItem('userData', JSON.stringify(userData))
+              this.$ability.update(userData.ability)
 
               // ? This is just for demo purpose as well.
               // ? Because we are showing eCommerce app's cart items count in navbar
               this.$store.commit(
-                "app-ecommerce/UPDATE_CART_ITEMS_COUNT",
+                'app-ecommerce/UPDATE_CART_ITEMS_COUNT',
                 userData.extras.eCommerceCartItemsCount
-              );
+              )
 
               // ? This is just for demo purpose. Don't think CASL is role based in this case, we used role in if condition just for ease
               this.$router
@@ -192,24 +188,24 @@ export default {
                 .then(() => {
                   this.$toast({
                     component: ToastificationContent,
-                    position: "top-right",
+                    position: 'top-right',
                     props: {
                       title: `Bem Vindo ${this.userName}`,
-                      icon: "CoffeeIcon",
-                      variant: "success",
+                      icon: 'CoffeeIcon',
+                      variant: 'success',
                       text: `Você logou com sucesso como ${this.userName}. Agora podemos explorar!`,
                     },
-                  });
-                });
+                  })
+                })
             })
             .catch((error) => {
-              this.$refs.loginForm.setErrors(error.response.data.error);
-            });
+              this.$refs.loginForm.setErrors(error.response.data.error)
+            })
         }
-      });
+      })
     },
   },
-};
+}
 </script>
 
 <style lang="scss">

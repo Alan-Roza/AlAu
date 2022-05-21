@@ -218,6 +218,7 @@ export default {
       try {
         const body = {
           username: this.userData.username,
+          createdAt: this.invoiceData.createdAt,
           operation: this.invoiceData.process.value,
           frequency: this.invoiceData.frequency,
           description: this.invoiceData.description,

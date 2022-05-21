@@ -27,10 +27,10 @@
                     </h3>
                   </div>
                   <b-card-text class="mb-25">
-                    Através desta seção será possível adicionar
+                    Através desta seção será possível editar
                   </b-card-text>
                   <b-card-text class="mb-25">
-                    novos schedules para o suprimento
+                    seus schedules para o suprimento
                   </b-card-text>
                   <b-card-text class="mb-0">
                     automático do recipiente de alimentos.
@@ -49,17 +49,18 @@
                       </b-input-group-prepend>
                       <b-form-input
                         id="invoice-data-id"
+                        v-model="invoiceData.id"
                         disabled
                       />
                     </b-input-group>
                   </div>
-                  <div class="d-flex align-items-center mb-1 disabled">
+                  <div class="d-flex align-items-center mb-1">
                     <span class="title">
                       Data Criação:
                     </span>
                     <flat-pickr
                       v-model="invoiceData.createdAt"
-                      class="form-control invoice-edit-input disabled"
+                      class="form-control invoice-edit-input"
                       disabled
                     />
                   </div>
@@ -161,7 +162,7 @@
             block
             @click="sendSchedule()"
           >
-            Salvar
+            Atualizar
           </b-button>
         </b-card>
       </b-col>
@@ -177,11 +178,13 @@ import { heightTransition } from '@core/mixins/ui/transition'
 import Ripple from 'vue-ripple-directive'
 import store from '@/store'
 import vSelect from 'vue-select'
-import router from '@/router'
 import {
   BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormInput, BInputGroup, BFormRadioGroup, BInputGroupPrepend, BFormTimepicker, VBToggle, BFormTextarea,
 } from 'bootstrap-vue'
 import flatPickr from 'vue-flatpickr-component'
+import { useToast } from 'vue-toastification/composition'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+import router from '@/router'
 import axios from 'axios'
 import invoiceStoreModule from '../invoiceStoreModule'
 import InvoiceSidebarAddNewCustomer from '../InvoiceSidebarAddNewCustomer.vue'
@@ -213,15 +216,57 @@ export default {
   },
   mixins: [heightTransition],
   methods: {
-    async sendSchedule() {
-      const body = {
-        id: 'Alan',
-        name: 'Alimentação da noite',
-        cron: '0 19 * * *',
-        op: 'feed',
+    async getSchedule() {
+      try {
+        const response = await axios.post(`'/addSchedule/'${router.currentRoute.params.id}`)
+        if (response) {
+          console.log(response)
+          this.invoiceData = response
+        }
+      } catch (err) {
+        this.toast({
+          component: ToastificationContent,
+          props: {
+            title: 'Oops... Erro ao tentar encontrar o schedule, tente novamente mais tarde.',
+            icon: 'AlertTriangleIcon',
+            variant: 'danger',
+          },
+        })
       }
-      const response = await axios.post('/addSchedule', body)
-      console.log(response, router.currentRoute.params.id)
+    },
+    async sendSchedule() {
+      try {
+        const body = {
+          id: this.invoiceData.id,
+          createdAt: this.invoiceData.createdAt,
+          username: this.userData.username,
+          operation: this.invoiceData.process.value,
+          frequency: this.invoiceData.frequency,
+          description: this.invoiceData.description,
+          title: this.invoiceData.title,
+          feedAmount: this.invoiceData.feedAmount,
+        }
+        const response = await axios.post('/addSchedule', body)
+        if (response) {
+          this.toast({
+            component: ToastificationContent,
+            props: {
+              title: 'Yupii!! Schedule salvo com sucesso.',
+              icon: 'ThumbsUpIcon',
+              variant: 'success',
+            },
+          })
+        }
+      } catch (err) {
+        this.toast({
+          component: ToastificationContent,
+          props: {
+            title: 'Oops... Erro ao salvar, tente novamente mais tarde.',
+            icon: 'AlertTriangleIcon',
+            variant: 'danger',
+          },
+        })
+      }
     },
   },
   setup() {
@@ -235,6 +280,8 @@ export default {
       if (store.hasModule(INVOICE_APP_STORE_MODULE_NAME)) store.unregisterModule(INVOICE_APP_STORE_MODULE_NAME)
     })
 
+    const toast = useToast()
+
     const invoiceData = ref({
       createdAt: new Date(),
       process: { title: 'Alimentar', value: 'feed' },
@@ -242,8 +289,9 @@ export default {
       description: '',
       title: '',
       feedAmount: null,
-      username: null,
     })
+
+    const userData = JSON.parse(localStorage.getItem('userData'))
 
     const itemsOptions = [
       {
@@ -265,6 +313,8 @@ export default {
       itemsOptions,
       locale,
       feedOptions,
+      toast,
+      userData,
     }
   },
 }

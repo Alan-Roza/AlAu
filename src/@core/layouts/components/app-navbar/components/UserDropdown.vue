@@ -7,8 +7,7 @@
     <template #button-content>
       <div class="d-sm-flex d-none user-nav">
         <p class="user-name font-weight-bolder mb-0">
-          Usuário
-          <!-- {{ userData.fullName || userData.username }} -->
+          {{ userData.username }}
         </p>
         <span class="user-status">{{ userData.role }}</span>
       </div>
@@ -115,42 +114,40 @@
 import {
   BNavItemDropdown,
   BDropdownItem,
-  BDropdownDivider,
   BAvatar,
-} from "bootstrap-vue";
-import { initialAbility } from "@/libs/acl/config";
-import useJwt from "@/auth/jwt/useJwt";
-import { avatarText } from "@core/utils/filter";
+} from 'bootstrap-vue'
+import { initialAbility } from '@/libs/acl/config'
+import useJwt from '@/auth/jwt/useJwt'
+import { avatarText } from '@core/utils/filter'
 
 export default {
   components: {
     BNavItemDropdown,
     BDropdownItem,
-    BDropdownDivider,
     BAvatar,
   },
   data() {
     return {
-      userData: JSON.parse(localStorage.getItem("userData")),
+      userData: JSON.parse(localStorage.getItem('userData')),
       avatarText,
-    };
+    }
   },
   methods: {
     logout() {
       // Remove userData from localStorage
       // ? You just removed token from localStorage. If you like, you can also make API call to backend to blacklist used token
-      localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName);
-      localStorage.removeItem(useJwt.jwtConfig.storageRefreshTokenKeyName);
+      localStorage.removeItem(useJwt.jwtConfig.storageTokenKeyName)
+      localStorage.removeItem(useJwt.jwtConfig.storageRefreshTokenKeyName)
 
       // Remove userData from localStorage
-      localStorage.removeItem("userData");
+      localStorage.removeItem('userData')
 
       // Reset ability
-      this.$ability.update(initialAbility);
+      this.$ability.update(initialAbility)
 
       // Redirect to login page
-      this.$router.push({ name: "auth-login" });
+      this.$router.push({ name: 'auth-login' })
     },
   },
-};
+}
 </script>

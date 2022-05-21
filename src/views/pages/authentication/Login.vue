@@ -91,16 +91,12 @@
 <script>
 /* eslint-disable global-require */
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import VuexyLogo from '@core/layouts/components/Logo.vue'
 import {
   BRow,
   BCol,
   BLink,
   BFormGroup,
   BFormInput,
-  BInputGroupAppend,
-  BInputGroup,
-  BFormCheckbox,
   BCardText,
   BCardTitle,
   BImg,
@@ -161,15 +157,16 @@ export default {
   },
   methods: {
     login() {
-      this.$refs.loginForm.validate().then((success) => {
+      this.$refs.loginForm.validate().then(success => {
         if (success) {
           useJwt
             .login({
               email: 'admin@demo.com',
               password: 'admin',
             })
-            .then((response) => {
+            .then(response => {
               const { userData } = response.data
+              userData.username = this.userName
               useJwt.setToken(response.data.accessToken)
               useJwt.setRefreshToken(response.data.refreshToken)
               localStorage.setItem('userData', JSON.stringify(userData))
@@ -178,8 +175,8 @@ export default {
               // ? This is just for demo purpose as well.
               // ? Because we are showing eCommerce app's cart items count in navbar
               this.$store.commit(
-                'app-ecommerce/UPDATE_CART_ITEMS_COUNT',
-                userData.extras.eCommerceCartItemsCount
+                'infos/UPDATE_USERNAME',
+                this.userName,
               )
 
               // ? This is just for demo purpose. Don't think CASL is role based in this case, we used role in if condition just for ease
@@ -198,7 +195,7 @@ export default {
                   })
                 })
             })
-            .catch((error) => {
+            .catch(error => {
               this.$refs.loginForm.setErrors(error.response.data.error)
             })
         }

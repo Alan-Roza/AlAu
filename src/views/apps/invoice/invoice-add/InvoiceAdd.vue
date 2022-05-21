@@ -181,6 +181,8 @@ import {
   BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormInput, BInputGroup, BFormRadioGroup, BInputGroupPrepend, BFormTimepicker, VBToggle, BFormTextarea,
 } from 'bootstrap-vue'
 import flatPickr from 'vue-flatpickr-component'
+import { useToast } from 'vue-toastification/composition'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 import axios from 'axios'
 import invoiceStoreModule from '../invoiceStoreModule'
 import InvoiceSidebarAddNewCustomer from '../InvoiceSidebarAddNewCustomer.vue'
@@ -213,14 +215,36 @@ export default {
   mixins: [heightTransition],
   methods: {
     async sendSchedule() {
-      const body = {
-        id: 'Alan',
-        name: 'Alimentação da noite',
-        cron: '0 19 * * *',
-        op: 'feed',
+      try {
+        const body = {
+          username: this.userData.username,
+          operation: this.invoiceData.process.value,
+          frequency: this.invoiceData.frequency,
+          description: this.invoiceData.description,
+          title: this.invoiceData.title,
+          feedAmount: this.invoiceData.feedAmount,
+        }
+        const response = await axios.post('/addSchedule', body)
+        if (response) {
+          this.toast({
+            component: ToastificationContent,
+            props: {
+              title: 'Yupii!! Schedule salvo com sucesso.',
+              icon: 'ThumbsUpIcon',
+              variant: 'success',
+            },
+          })
+        }
+      } catch (err) {
+        this.toast({
+          component: ToastificationContent,
+          props: {
+            title: 'Oops... Erro ao salvar, tente novamente mais tarde.',
+            icon: 'AlertTriangleIcon',
+            variant: 'danger',
+          },
+        })
       }
-      const response = await axios.post('/addSchedule', body)
-      console.log(response)
     },
   },
   setup() {
@@ -234,6 +258,8 @@ export default {
       if (store.hasModule(INVOICE_APP_STORE_MODULE_NAME)) store.unregisterModule(INVOICE_APP_STORE_MODULE_NAME)
     })
 
+    const toast = useToast()
+
     const invoiceData = ref({
       createdAt: new Date(),
       process: { title: 'Alimentar', value: 'feed' },
@@ -241,8 +267,9 @@ export default {
       description: '',
       title: '',
       feedAmount: null,
-      username: null,
     })
+
+    const userData = JSON.parse(localStorage.getItem('userData'))
 
     const itemsOptions = [
       {
@@ -264,6 +291,8 @@ export default {
       itemsOptions,
       locale,
       feedOptions,
+      toast,
+      userData,
     }
   },
 }

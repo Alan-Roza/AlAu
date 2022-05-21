@@ -23,20 +23,6 @@
             Adicionar
           </b-button>
         </b-col>
-
-        <!-- Search -->
-        <b-col
-          cols="12"
-          md="6"
-        >
-          <div class="d-flex align-items-center justify-content-end">
-            <b-form-input
-              v-model="searchQuery"
-              class="d-inline-block mr-1"
-              placeholder="Procurar..."
-            />
-          </div>
-        </b-col>
       </b-row>
 
     </div>
@@ -72,51 +58,37 @@
       </template>
 
       <!-- Column: Invoice Status -->
-      <template #cell(color)="data">
-        <b-avatar
-          :id="`invoice-row-${data.item.id}`"
-          size="32"
-          :variant="`light-${resolveInvoiceStatusVariantAndIcon(data.item.color).variant}`"
-        >
-          <feather-icon
-            :icon="resolveInvoiceStatusVariantAndIcon(data.item.color).icon"
-          />
-        </b-avatar>
-        <b-tooltip
-          :target="`invoice-row-${data.item.id}`"
-          placement="top"
-        >
-          <p class="mb-0">
-            {{ data.item.color }}
-          </p>
-          <p class="mb-0">
-            Balance: {{ data.item.foodAmount }}
-          </p>
-          <p class="mb-0">
-            Due Date: {{ data.item.updateAt }}
-          </p>
-        </b-tooltip>
+      <template #cell(operation)="data">
+        {{ data.value }}
       </template>
 
       <!-- Column: Client -->
-      <template #cell(pet)="data">
+      <template #cell(title)="data">
         <b-media vertical-align="center">
-          <template #aside>
-            <b-avatar
-              size="32"
-              :src="data.item.avatar"
-              :text="avatarText(data.item.pet.name)"
-              :variant="`light-${resolveClientAvatarVariant(data.item.color)}`"
-            />
-          </template>
           <span class="font-weight-bold d-block text-nowrap">
-            {{ data.item.pet.name }}
+            {{ data.title }}
+          </span>
+        </b-media>
+      </template>
+
+      <template #cell(description)="data">
+        <b-media vertical-align="center">
+          <span class="font-weight-bold d-block text-nowrap">
+            {{ data.description }}
+          </span>
+        </b-media>
+      </template>
+
+      <template #cell(foodAmount)="data">
+        <b-media vertical-align="center">
+          <span class="font-weight-bold d-block text-nowrap">
+            {{ data.value }}
           </span>
         </b-media>
       </template>
 
       <!-- Column: Issued Date -->
-      <template #cell(updateAt)="data">
+      <template #cell(createdAt)="data">
         <span class="text-nowrap">
           {{ data.value }}
         </span>
@@ -126,113 +98,53 @@
       <template #cell(actions)="data">
 
         <div class="text-nowrap">
-          <feather-icon
-            :id="`invoice-row-${data.item.id}-send-icon`"
-            icon="SendIcon"
-            class="cursor-pointer"
-            size="16"
-          />
-          <b-tooltip
-            title="Send Invoice"
-            class="cursor-pointer"
-            :target="`invoice-row-${data.item.id}-send-icon`"
-          />
-
-          <feather-icon
-            :id="`invoice-row-${data.item.id}-preview-icon`"
-            icon="EyeIcon"
-            size="16"
-            class="mx-1"
-            @click="$router.push({ name: 'apps-invoice-preview', params: { id: data.item.id }})"
-          />
-          <b-tooltip
-            title="Preview Invoice"
-            :target="`invoice-row-${data.item.id}-preview-icon`"
-          />
-
-          <!-- Dropdown -->
-          <b-dropdown
+          <b-button
             variant="link"
-            toggle-class="p-0"
-            no-caret
-            :right="$store.state.appConfig.isRTL"
+            class="p-0"
+            :to="{ name: 'apps-invoice-edit', params: { id: data.item.id } }"
           >
+            <feather-icon
+              :id="`invoice-row-${data.item.id}-edit-icon`"
+              icon="EditIcon"
+              class="cursor-pointery"
+              size="16"
+            />
+          </b-button>
+          <b-tooltip
+            title="Editar"
+            class="cursor-pointer"
+            :target="`invoice-row-${data.item.id}-edit-icon`"
+          />
 
-            <template #button-content>
-              <feather-icon
-                icon="MoreVerticalIcon"
-                size="16"
-                class="align-middle text-body"
-              />
-            </template>
-            <b-dropdown-item :to="{ name: 'apps-invoice-edit', params: { id: data.item.id } }">
-              <feather-icon icon="EditIcon" />
-              <span class="align-middle ml-50">Editar</span>
-            </b-dropdown-item>
-            <b-dropdown-item>
-              <feather-icon icon="TrashIcon" />
-              <span class="align-middle ml-50">Deletar</span>
-            </b-dropdown-item>
-          </b-dropdown>
+          <b-button
+            variant="link"
+            class="p-0 pl-1"
+            @click="deleteSchedule(data.item.id)"
+          >
+            <feather-icon
+              :id="`invoice-row-${data.item.id}-trash-icon`"
+              icon="TrashIcon"
+              class="cursor-pointery"
+              size="16"
+            />
+          </b-button>
+          <b-tooltip
+            title="Deletar"
+            class="cursor-pointer"
+            :target="`invoice-row-${data.item.id}-trash-icon`"
+          />
+
         </div>
       </template>
-
     </b-table>
-    <div class="mx-2 mb-2">
-      <b-row>
-
-        <b-col
-          cols="12"
-          sm="6"
-          class="d-flex align-items-center justify-content-center justify-content-sm-start"
-        >
-          <span class="text-muted">Exibindo {{ dataMeta.to }} items de {{ dataMeta.of }} items</span>
-        </b-col>
-        <!-- Pagination -->
-        <b-col
-          cols="12"
-          sm="6"
-          class="d-flex align-items-center justify-content-center justify-content-sm-end"
-        >
-
-          <b-pagination
-            v-model="currentPage"
-            :total-rows="totalInvoices"
-            :per-page="perPage"
-            first-number
-            last-number
-            class="mb-0 mt-1 mt-sm-0"
-            prev-class="prev-item"
-            next-class="next-item"
-          >
-            <template #prev-text>
-              <feather-icon
-                icon="ChevronLeftIcon"
-                size="18"
-              />
-            </template>
-            <template #next-text>
-              <feather-icon
-                icon="ChevronRightIcon"
-                size="18"
-              />
-            </template>
-          </b-pagination>
-
-        </b-col>
-
-      </b-row>
-    </div>
   </b-card>
-
 </template>
 
 <script>
 import {
-  BCard, BRow, BCol, BFormInput, BButton, BTable, BMedia, BAvatar, BLink,
-  BDropdown, BDropdownItem, BPagination, BTooltip,
+  BCard, BRow, BCol, BButton, BTable, BMedia, BLink,
+  BTooltip,
 } from 'bootstrap-vue'
-import { avatarText } from '@core/utils/filter'
 import { onUnmounted } from '@vue/composition-api'
 import store from '@/store'
 import useInvoicesList from './useInvoiceList'
@@ -244,15 +156,10 @@ export default {
     BCard,
     BRow,
     BCol,
-    BFormInput,
     BButton,
     BTable,
     BMedia,
-    BAvatar,
     BLink,
-    BDropdown,
-    BDropdownItem,
-    BPagination,
     BTooltip,
   },
   setup() {
@@ -269,44 +176,18 @@ export default {
     const {
       fetchInvoices,
       tableColumns,
-      perPage,
-      currentPage,
-      totalInvoices,
-      dataMeta,
-      perPageOptions,
-      searchQuery,
       sortBy,
       isSortDirDesc,
       refInvoiceListTable,
 
-      statusFilter,
-
-      refetchData,
-
-      resolveInvoiceStatusVariantAndIcon,
-      resolveClientAvatarVariant,
     } = useInvoicesList()
 
     return {
       fetchInvoices,
       tableColumns,
-      perPage,
-      currentPage,
-      totalInvoices,
-      dataMeta,
-      perPageOptions,
-      searchQuery,
       sortBy,
       isSortDirDesc,
       refInvoiceListTable,
-
-      statusFilter,
-
-      refetchData,
-
-      avatarText,
-      resolveInvoiceStatusVariantAndIcon,
-      resolveClientAvatarVariant,
     }
   },
 }

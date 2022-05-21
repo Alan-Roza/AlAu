@@ -49,7 +49,6 @@
                       </b-input-group-prepend>
                       <b-form-input
                         id="invoice-data-id"
-                        v-model="invoiceData.id"
                         disabled
                       />
                     </b-input-group>
@@ -59,7 +58,7 @@
                       Data Criação:
                     </span>
                     <flat-pickr
-                      v-model="invoiceData.issuedDate"
+                      v-model="invoiceData.createdAt"
                       class="form-control invoice-edit-input"
                       disabled
                     />
@@ -80,162 +79,64 @@
                 <!-- Col: Invoice To -->
                 <b-col
                   cols="12"
-                  xl="6"
+                  xl="12"
                   class="mb-lg-1"
                 >
-                  <h6 class="mb-2">
-                    Operação:
-                  </h6>
 
-                  <!-- Select Client -->
-                  <v-select
-                    v-model="invoiceData.op"
-                    :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-                    :options="op"
-                    label="company"
-                    input-id="invoice-data-client"
-                    :clearable="false"
-                  >
-                    <template #list-header>
-                      <li
-                        v-b-toggle.sidebar-invoice-add-new-customer
-                        class="add-new-client-header d-flex align-items-center my-50"
-                      >
-                        <feather-icon
-                          icon="PlusIcon"
-                          size="16"
-                        />
-                        <span class="align-middle ml-25">Add New Customer</span>
-                      </li>
-                    </template>
-                  </v-select>
-
-                  <div class=" mb-1 mt-2">
-                    <span class="title">
-                      Data Criação:
-                    </span>
-                    <flat-pickr
-                      class="form-control"
-                      :config="{ enableTime: true, dateFormat: 'H:i'}"
+                  <!-- Form Add -->
+                  <b-form-group>
+                    <h5 class="mt-2">
+                      Título:
+                    </h5>
+                    <b-form-input
+                      id="basicInput"
+                      v-model="invoiceData.title"
+                      placeholder="Digite um nome/título"
                     />
-                  </div>
 
-                  <validation-provider
-                    #default="validationContext"
-                    name="Start Date"
-                    rules="required"
-                  >
+                    <h5 class="mt-2">
+                      Descrição:
+                    </h5>
+                    <b-form-textarea
+                      id="textarea-no-resize"
+                      v-model="invoiceData.description"
+                      placeholder="Digite uma descrição"
+                      rows="3"
+                      no-resize
+                    />
 
-                    <b-form-group
-                      label="Start Date"
-                      label-for="start-date"
-                      :state="getValidationState(validationContext)"
-                    >
-                      <flat-pickr
-                        v-model="eventLocal.start"
-                        class="form-control"
-                        :config="{ enableTime: true, dateFormat: 'H:i'}"
-                      />
-                      <b-form-invalid-feedback :state="getValidationState(validationContext)">
-                        {{ validationContext.errors[0] }}
-                      </b-form-invalid-feedback>
-                    </b-form-group>
-                  </validation-provider>
+                    <h5 class="mt-2">
+                      Operação:
+                    </h5>
+                    <v-select
+                      v-model="invoiceData.process"
+                      label="title"
+                      :options="itemsOptions"
+                    />
 
-                  <!-- Title -->
-                  <validation-provider
-                    #default="validationContext"
-                    name="Title"
-                    rules="required"
-                  >
-                    <b-form-group
-                      label="Title"
-                      label-for="event-title"
-                    >
-                      <b-form-input
-                        id="event-title"
-                        v-model="eventLocal.title"
-                        autofocus
-                        :state="getValidationState(validationContext)"
-                        trim
-                        placeholder="Event Title"
-                      />
+                    <h5 class="mt-2">
+                      Frequência:
+                    </h5>
+                    <b-form-timepicker
+                      v-model="invoiceData.frequency"
+                      class="form-control"
+                      :locale="locale"
+                      placeholder="Selecione um horário"
+                    />
 
-                      <b-form-invalid-feedback>
-                        {{ validationContext.errors[0] }}
-                      </b-form-invalid-feedback>
-                    </b-form-group>
-                  </validation-provider>
+                    <h5 class="mt-2">
+                      Quantidade de Alimento:
+                    </h5>
+                    <b-form-radio-group
+                      v-model="invoiceData.feedAmount"
+                      :options="feedOptions"
+                      class="demo-inline-spacing"
+                      name="radio-inline"
+                    />
 
-                  <!-- Selected Client -->
-                  <div
-                    v-if="invoiceData.client"
-                    class="mt-1"
-                  >
-                    <h6 class="mb-25">
-                      {{ invoiceData.client.name }}
-                    </h6>
-                    <b-card-text class="mb-25">
-                      {{ invoiceData.client.company }}
-                    </b-card-text>
-                    <b-card-text class="mb-25">
-                      {{ invoiceData.client.address }}, {{ invoiceData.client.country }}
-                    </b-card-text>
-                    <b-card-text class="mb-25">
-                      {{ invoiceData.client.contact }}
-                    </b-card-text>
-                    <b-card-text class="mb-0">
-                      {{ invoiceData.client.companyEmail }}
-                    </b-card-text>
-                  </div>
+                  </b-form-group>
                 </b-col>
 
-                <!-- Col: Payment Details -->
-                <b-col
-                  xl="6"
-                  cols="12"
-                  class="mt-xl-0 mt-2 justify-content-end d-xl-flex d-block"
-                >
-                  <div>
-                    <h6 class="mb-2">
-                      Payment Details:
-                    </h6>
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td class="pr-1">
-                            Total Due:
-                          </td>
-                          <td><span class="font-weight-bold">$12,110.55</span></td>
-                        </tr>
-                        <tr>
-                          <td class="pr-1">
-                            Bank name:
-                          </td>
-                          <td>American Bank</td>
-                        </tr>
-                        <tr>
-                          <td class="pr-1">
-                            Country:
-                          </td>
-                          <td>United States</td>
-                        </tr>
-                        <tr>
-                          <td class="pr-1">
-                            IBAN:
-                          </td>
-                          <td>ETD95476213874685</td>
-                        </tr>
-                        <tr>
-                          <td class="pr-1">
-                            SWIFT code:
-                          </td>
-                          <td>BR91905</td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </b-col>
               </b-row>
             </b-card-body>
           </b-card>
@@ -253,27 +154,6 @@
         <!-- Action Buttons -->
         <b-card>
 
-          <!-- Button: Send Invoice -->
-          <b-button
-            v-ripple.400="'rgba(255, 255, 255, 0.15)'"
-            variant="primary"
-            class="mb-75"
-            block
-            disabled
-          >
-            Send Invoice
-          </b-button>
-
-          <!-- Button: DOwnload -->
-          <b-button
-            v-ripple.400="'rgba(113, 102, 240, 0.15)'"
-            variant="outline-primary"
-            class="mb-75"
-            block
-          >
-            Preview
-          </b-button>
-
           <!-- Button: Print -->
           <b-button
             v-ripple.400="'rgba(113, 102, 240, 0.15)'"
@@ -281,57 +161,9 @@
             block
             @click="sendSchedule()"
           >
-            Save
+            Adicionar
           </b-button>
         </b-card>
-
-        <!-- Payment Method -->
-        <div class="mt-2">
-          <b-form-group
-            label="Accept Payment Via"
-            label-for="payment-method"
-          >
-            <v-select
-              v-model="invoiceData.paymentMethod"
-              :dir="$store.state.appConfig.isRTL ? 'rtl' : 'ltr'"
-              :options="paymentMethods"
-              input-id="payment-method"
-              class="payment-selector"
-              :clearable="false"
-            />
-          </b-form-group>
-
-          <!-- ? Below values are not adding invoiceData to keep invoiceData more generic and less confusing  -->
-
-          <!-- Payment Terms -->
-          <div class="d-flex justify-content-between align-items-center">
-            <label for="patymentTerms">Payment Terms</label>
-            <b-form-checkbox
-              id="patymentTerms"
-              :checked="true"
-              switch
-            />
-          </div>
-
-          <!-- Client Notes -->
-          <div class="d-flex justify-content-between align-items-center my-1">
-            <label for="clientNotes">Client Notes</label>
-            <b-form-checkbox
-              id="clientNotes"
-              :checked="true"
-              switch
-            />
-          </div>
-
-          <!-- Payment Stub -->
-          <div class="d-flex justify-content-between align-items-center">
-            <label for="paymentStub">Payment Stub</label>
-            <b-form-checkbox
-              id="paymentStub"
-              switch
-            />
-          </div>
-        </div>
       </b-col>
     </b-row>
     <invoice-sidebar-add-new-customer />
@@ -344,10 +176,10 @@ import { ref, onUnmounted } from '@vue/composition-api'
 import { heightTransition } from '@core/mixins/ui/transition'
 import Ripple from 'vue-ripple-directive'
 import store from '@/store'
-import {
-  BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormGroup, BFormInput, BInputGroup, BInputGroupPrepend, BFormCheckbox, VBToggle,
-} from 'bootstrap-vue'
 import vSelect from 'vue-select'
+import {
+  BRow, BCol, BCard, BCardBody, BButton, BCardText, BForm, BFormInput, BInputGroup, BFormRadioGroup, BInputGroupPrepend, BFormTimepicker, VBToggle, BFormTextarea,
+} from 'bootstrap-vue'
 import flatPickr from 'vue-flatpickr-component'
 import axios from 'axios'
 import invoiceStoreModule from '../invoiceStoreModule'
@@ -362,15 +194,16 @@ export default {
     BButton,
     BCardText,
     BForm,
-    BFormGroup,
+    BFormRadioGroup,
     BFormInput,
     BInputGroup,
+    BFormTextarea,
     BInputGroupPrepend,
-    BFormCheckbox,
     flatPickr,
-    vSelect,
     Logo,
+    BFormTimepicker,
     InvoiceSidebarAddNewCustomer,
+    vSelect,
   },
   directives: {
     Ripple,
@@ -378,37 +211,7 @@ export default {
 
   },
   mixins: [heightTransition],
-  mounted() {
-    this.initTrHeight()
-  },
-  created() {
-    window.addEventListener('resize', this.initTrHeight)
-  },
-  destroyed() {
-    window.removeEventListener('resize', this.initTrHeight)
-  },
   methods: {
-    addNewItemInItemForm() {
-      this.$refs.form.style.overflow = 'hidden'
-      this.invoiceData.items.push(JSON.parse(JSON.stringify(this.itemFormBlankItem)))
-
-      this.$nextTick(() => {
-        this.trAddHeight(this.$refs.row[0].offsetHeight)
-        setTimeout(() => {
-          this.$refs.form.style.overflow = null
-        }, 350)
-      })
-    },
-    removeItem(index) {
-      this.invoiceData.items.splice(index, 1)
-      this.trTrimHeight(this.$refs.row[0].offsetHeight)
-    },
-    initTrHeight() {
-      this.trSetHeight(null)
-      this.$nextTick(() => {
-        this.trSetHeight(this.$refs.form.scrollHeight)
-      })
-    },
     async sendSchedule() {
       const body = {
         id: 'Alan',
@@ -431,76 +234,36 @@ export default {
       if (store.hasModule(INVOICE_APP_STORE_MODULE_NAME)) store.unregisterModule(INVOICE_APP_STORE_MODULE_NAME)
     })
 
-    const op = ref([])
-    store.dispatch('app-invoice/fetchClients')
-      .then(response => { op.value = response.data })
-
-    const itemFormBlankItem = {
-      item: null,
-      cost: 0,
-      qty: 0,
-      description: '',
-    }
-
     const invoiceData = ref({
-      id: 5037,
-      client: null,
-
-      // ? Set single Item in form for adding data
-      items: [JSON.parse(JSON.stringify(itemFormBlankItem))],
-
-      salesPerson: '',
-      note: 'It was a pleasure working with you and your team. We hope you will keep us in mind for future freelance projects. Thank You!',
-      paymentMethod: null,
+      createdAt: new Date(),
+      process: { title: 'Alimentar', value: 'feed' },
+      frequency: null,
+      description: '',
+      title: '',
+      feedAmount: null,
+      username: null,
     })
 
     const itemsOptions = [
       {
-        itemTitle: 'App Design',
-        cost: 24,
-        qty: 1,
-        description: 'Designed UI kit & app pages.',
-      },
-      {
-        itemTitle: 'App Customization',
-        cost: 26,
-        qty: 1,
-        description: 'Customization & Bug Fixes.',
-      },
-      {
-        itemTitle: 'ABC Template',
-        cost: 28,
-        qty: 1,
-        description: 'Bootstrap 4 admin template.',
-      },
-      {
-        itemTitle: 'App Development',
-        cost: 32,
-        qty: 1,
-        description: 'Native App Development.',
+        title: 'Alimentar',
+        value: 'feed',
       },
     ]
 
-    const updateItemForm = (index, val) => {
-      const { cost, qty, description } = val
-      invoiceData.value.items[index].cost = cost
-      invoiceData.value.items[index].qty = qty
-      invoiceData.value.items[index].description = description
-    }
-
-    const paymentMethods = [
-      'Bank Account',
-      'PayPal',
-      'UPI Transfer',
+    const feedOptions = [
+      { text: 'Pouco', value: 'feedLow' },
+      { text: 'Médio', value: 'feedMiddle' },
+      { text: 'Muito', value: 'feedHigh' },
     ]
+
+    const locale = 'de'
 
     return {
       invoiceData,
-      op,
       itemsOptions,
-      updateItemForm,
-      itemFormBlankItem,
-      paymentMethods,
+      locale,
+      feedOptions,
     }
   },
 }

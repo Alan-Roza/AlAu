@@ -217,15 +217,24 @@ export default {
     async sendSchedule() {
       try {
         const body = {
-          username: this.userData.username,
-          createdAt: this.invoiceData.createdAt,
+          user: this.userData.username,
+          creationDate: this.invoiceData.createdAt,
+          desc: this.invoiceData.description,
+          mealSize: this.invoiceData.feedAmount,
           operation: this.invoiceData.process.value,
-          frequency: this.invoiceData.frequency,
-          description: this.invoiceData.description,
           title: this.invoiceData.title,
-          feedAmount: this.invoiceData.feedAmount,
+          frequency: {
+            time: this.invoiceData.frequency,
+            sunday: true,
+            monday: true,
+            tuesday: true,
+            wednesday: true,
+            thursday: true,
+            friday: true,
+            saturday: true,
+          },
         }
-        const response = await axios.post('/addSchedule', body)
+        const response = await axios.post('/feeding/create', body)
         if (response) {
           this.toast({
             component: ToastificationContent,
@@ -280,9 +289,9 @@ export default {
     ]
 
     const feedOptions = [
-      { text: 'Pouco', value: 'feedLow' },
-      { text: 'Médio', value: 'feedMiddle' },
-      { text: 'Muito', value: 'feedHigh' },
+      { text: 'Pouco', value: 'Small' },
+      { text: 'Médio', value: 'Medium' },
+      { text: 'Muito', value: 'Large' },
     ]
 
     const locale = 'de'

@@ -1,13 +1,15 @@
 import { ref } from '@vue/composition-api'
-import store from '@/store'
 
 // Notification
 import { useToast } from 'vue-toastification/composition'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+import axios from 'axios'
 
 export default function useInvoicesList() {
   // Use toast
   const toast = useToast()
+
+  const userData = JSON.parse(localStorage.getItem('userData'))
 
   const refInvoiceListTable = ref(null)
 
@@ -24,13 +26,10 @@ export default function useInvoicesList() {
   const sortBy = ref('id')
 
   const fetchInvoices = (ctx, callback) => {
-    store
-      .dispatch('app-invoice/fetchInvoices', {})
-      .then(response => {
-        const { invoices } = response.data
-        console.log(invoices, response.data)
-
-        callback(invoices)
+    axios
+      .get(`/feeding/list?user=${userData.username}`).then(response => {
+        console.log(response, 'response list feeding')
+        callback(response)
       })
       .catch(() => {
         toast({

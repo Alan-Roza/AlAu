@@ -146,6 +146,9 @@ import {
   BTooltip,
 } from 'bootstrap-vue'
 import { onUnmounted } from '@vue/composition-api'
+import { useToast } from 'vue-toastification/composition'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
+import axios from 'axios'
 import store from '@/store'
 import useInvoicesList from './useInvoiceList'
 
@@ -162,8 +165,38 @@ export default {
     BLink,
     BTooltip,
   },
+  methods: {
+    deleteSchedule(id) {
+      axios
+        .delete('/feeding/delete', { user: this.userData.username, id }).then(response => {
+          console.log(response, 'response list feeding')
+          this.toast({
+            component: ToastificationContent,
+            props: {
+              title: 'Schedule deletado com sucesso.',
+              icon: 'ThumbsUpIcon',
+              variant: 'success',
+            },
+          })
+        })
+        .catch(() => {
+          this.toast({
+            component: ToastificationContent,
+            props: {
+              title: 'Erro ao carregar a lista',
+              icon: 'AlertTriangleIcon',
+              variant: 'danger',
+            },
+          })
+        })
+    },
+  },
   setup() {
     const INVOICE_APP_STORE_MODULE_NAME = 'app-invoice'
+
+    const toast = useToast()
+
+    const userData = JSON.parse(localStorage.getItem('userData'))
 
     // Register module
     if (!store.hasModule(INVOICE_APP_STORE_MODULE_NAME)) store.registerModule(INVOICE_APP_STORE_MODULE_NAME, invoiceStoreModule)
@@ -185,6 +218,8 @@ export default {
     return {
       fetchInvoices,
       tableColumns,
+      toast,
+      userData,
       sortBy,
       isSortDirDesc,
       refInvoiceListTable,

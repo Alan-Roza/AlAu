@@ -17,7 +17,7 @@
     <h1 class="mb-1 mt-50 text-white">Tudo certo por aqui!</h1>
     <!-- PEGA O NOME DO USUARIO LOGADO {{ data.name }} -->
     <b-card-text class="m-auto w-80">
-      Seu pet se alimentou <strong>{{ data.saleToday }}x</strong> essa
+      Seu pet se alimentou <strong>{{ data }}x</strong> essa
       semana.<br />
       Você pode checar as alimentações futuras e as que estão para acontecer.
     </b-card-text>

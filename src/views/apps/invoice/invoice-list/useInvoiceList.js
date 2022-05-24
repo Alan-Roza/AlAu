@@ -18,9 +18,10 @@ export default function useInvoicesList() {
     { key: 'id', label: '#id', sortable: false },
     { key: 'operation', label: 'Operação', sortable: false },
     { key: 'title', label: 'Título', sortable: false },
-    { key: 'description', label: 'Descrição', sortable: false },
-    { key: 'foodAmount', label: 'Quantidade de Alimento', sortable: false },
-    { key: 'createdAt', label: 'Criado em', sortable: false },
+    { key: 'desc', label: 'Descrição', sortable: false },
+    { key: 'mealSize', label: 'Quantidade de Alimento', sortable: false },
+    { key: 'creationDate', label: 'Criado em', sortable: false },
+    { key: 'frequency.time', label: 'Frequência', sortable: false },
     { key: 'actions', label: 'Ações' },
   ]
   const sortBy = ref('id')
@@ -29,7 +30,7 @@ export default function useInvoicesList() {
     axios
       .get(`/feeding/list?user=${userData.username}`).then(response => {
         console.log(response, 'response list feeding')
-        callback(response)
+        callback(response.data)
       })
       .catch(() => {
         toast({

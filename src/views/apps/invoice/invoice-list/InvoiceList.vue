@@ -59,27 +59,11 @@
 
       <!-- Column: Invoice Status -->
       <template #cell(operation)="data">
-        {{ data.value }}
+        {{ data.value === 'feed' && 'Alimentar' }}
       </template>
 
       <!-- Column: Client -->
       <template #cell(title)="data">
-        <b-media vertical-align="center">
-          <span class="font-weight-bold d-block text-nowrap">
-            {{ data.title }}
-          </span>
-        </b-media>
-      </template>
-
-      <template #cell(description)="data">
-        <b-media vertical-align="center">
-          <span class="font-weight-bold d-block text-nowrap">
-            {{ data.description }}
-          </span>
-        </b-media>
-      </template>
-
-      <template #cell(foodAmount)="data">
         <b-media vertical-align="center">
           <span class="font-weight-bold d-block text-nowrap">
             {{ data.value }}
@@ -87,10 +71,26 @@
         </b-media>
       </template>
 
+      <template #cell(desc)="data">
+        <b-media vertical-align="center">
+          <span class="font-weight-bold d-block text-nowrap">
+            {{ data.value }}
+          </span>
+        </b-media>
+      </template>
+
+      <template #cell(mealSize)="data">
+        <b-media vertical-align="center">
+          <span class="font-weight-bold d-block text-nowrap">
+            {{ data.value === 'Large' ? 'Muito' : data.value === 'Medium' ? 'Médio' : 'Pouco' }}
+          </span>
+        </b-media>
+      </template>
+
       <!-- Column: Issued Date -->
-      <template #cell(createdAt)="data">
+      <template #cell(creationDate)="data">
         <span class="text-nowrap">
-          {{ data.value }}
+          {{ data.value.slice(0, 10) }}
         </span>
       </template>
 

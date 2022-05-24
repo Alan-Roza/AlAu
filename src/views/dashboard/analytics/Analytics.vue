@@ -55,10 +55,6 @@ export default {
     }
   },
   created() {
-    this.$http.get('/analytics/data').then(response => {
-      // this.data = response.data
-      console.log(response.data)
-    })
     const fetchDashboardData = () => {
       axios
         .get(`/dashboard?user=${this.userData.username}`)

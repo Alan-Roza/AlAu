@@ -50,7 +50,7 @@
       <!-- Column: Id -->
       <template #cell(id)="data">
         <b-link
-          :to="{ name: 'apps-invoice-preview', params: { id: data.item.id }}"
+          :to="{ name: 'apps-invoice-edit', params: { id: data.item.id }}"
           class="font-weight-bold"
         >
           #{{ data.value }}

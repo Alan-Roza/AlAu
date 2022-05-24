@@ -215,13 +215,18 @@ export default {
 
   },
   mixins: [heightTransition],
-  methods: {
-    async getSchedule() {
+  created() {
+    const getSchedule = async () => {
       try {
-        const response = await axios.post(`'/addSchedule/'${router.currentRoute.params.id}`)
+        const response = await axios.get(`/feeding/list?user=${this.userData.username}&id=${router.currentRoute.params.id}`)
         if (response) {
-          console.log(response)
-          this.invoiceData = response
+          this.invoiceData = response.data
+          this.invoiceData.frequency = response.data.frequency.time
+          this.invoiceData.createdAt = response.data.creationDate
+          this.invoiceData.description = response.data.desc
+          this.invoiceData.process = response.data.operation
+          this.invoiceData.feedAmount = response.data.mealSize
+          this.invoiceData.id = response.data.id ?? router.currentRoute.params.id
         }
       } catch (err) {
         this.toast({
@@ -233,12 +238,15 @@ export default {
           },
         })
       }
-    },
+    }
+    getSchedule()
+  },
+  methods: {
     async sendSchedule() {
       try {
         const body = {
-          id: this.invoiceData.id,
-          createdAt: this.invoiceData.createdAt,
+          id: this.invoiceData.id ?? router.currentRoute.params.id,
+          createdAt: new Date(this.invoiceData.createdAt),
           username: this.userData.username,
           operation: this.invoiceData.process.value,
           frequency: this.invoiceData.frequency,
@@ -246,7 +254,7 @@ export default {
           title: this.invoiceData.title,
           feedAmount: this.invoiceData.feedAmount,
         }
-        const response = await axios.post('/addSchedule', body)
+        const response = await axios.post('/feeding/update', body)
         if (response) {
           this.toast({
             component: ToastificationContent,
@@ -301,9 +309,9 @@ export default {
     ]
 
     const feedOptions = [
-      { text: 'Pouco', value: 'feedLow' },
-      { text: 'Médio', value: 'feedMiddle' },
-      { text: 'Muito', value: 'feedHigh' },
+      { text: 'Pouco', value: 'Small' },
+      { text: 'Médio', value: 'Medium' },
+      { text: 'Muito', value: 'Large' },
     ]
 
     const locale = 'de'

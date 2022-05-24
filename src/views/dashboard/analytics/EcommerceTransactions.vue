@@ -1,58 +1,45 @@
 <template>
   <b-card v-if="data" class="card-transaction" no-body>
     <b-card-header>
-      <b-card-title>Histórico</b-card-title>
-
-      <b-dropdown
-        variant="link"
-        no-caret
-        class="chart-dropdown"
-        toggle-class="p-0"
-        right
-      >
-        <template #button-content>
-          <feather-icon
-            icon="MoreVerticalIcon"
-            size="18"
-            class="text-body cursor-pointer"
-          />
-        </template>
-        <b-dropdown-item href="#">
-          Last 28 Days
-        </b-dropdown-item>
-        <b-dropdown-item href="#">
-          Last Month
-        </b-dropdown-item>
-        <b-dropdown-item href="#">
-          Last Year
-        </b-dropdown-item>
-      </b-dropdown>
+      <b-card-title>Histórico de Alimentações</b-card-title>
     </b-card-header>
 
     <b-card-body>
       <div
         v-for="transaction in data"
-        :key="transaction.mode"
+        :key="transaction.id"
         class="transaction-item"
       >
         <b-media no-body>
           <b-media-aside>
-            <b-avatar rounded size="42" :variant="transaction.avatarVariant">
-              <feather-icon size="18" :icon="transaction.avatar" />
+            <b-avatar
+              rounded
+              size="58"
+              :variant="transaction.status.includes('Success') ? 'light-success' : 'light-primary'"
+            >
+              <feather-icon
+                size="24"
+                :icon="transaction.status.includes('Success') ? 'CheckIcon' : 'BatteryChargingIcon'"
+              />
             </b-avatar>
           </b-media-aside>
           <b-media-body>
             <h6 class="transaction-title">
-              {{ transaction.mode }}
+              {{ transaction.title }}
             </h6>
-            <small>{{ transaction.types }}</small>
+            <small>{{ transaction.status.includes('Success') ? 'Sucesso!' : 'O Recipiente já Estava Cheio.' }}</small>
           </b-media-body>
         </b-media>
-        <div
-          class="font-weight-bolder"
-          :class="transaction.deduction ? 'text-danger' : 'text-success'"
-        >
-          {{ transaction.payment }}
+        <div style="text-align: right">
+          <div>
+            {{ transaction.time }}
+          </div>
+          <div
+            class="font-weight-bolder"
+            :class="transaction.status.includes('Success') ? 'text-success' : 'text-primary'"
+          >
+            {{ transaction.mealSize }}
+          </div>
         </div>
       </div>
     </b-card-body>
@@ -69,9 +56,7 @@ import {
   BMedia,
   BMediaAside,
   BAvatar,
-  BDropdown,
-  BDropdownItem,
-} from "bootstrap-vue";
+} from 'bootstrap-vue'
 
 export default {
   components: {
@@ -83,8 +68,6 @@ export default {
     BMedia,
     BMediaAside,
     BAvatar,
-    BDropdown,
-    BDropdownItem,
   },
   props: {
     data: {
@@ -92,5 +75,5 @@ export default {
       default: () => [],
     },
   },
-};
+}
 </script>

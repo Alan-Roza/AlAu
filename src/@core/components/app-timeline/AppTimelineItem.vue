@@ -18,7 +18,7 @@
 
     <slot>
       <div class="d-flex flex-sm-row flex-column flex-wrap justify-content-between mb-1 mb-sm-0">
-        <h6 v-text="title" />
+        <h5 v-text="title" />
         <small
           class="timeline-item-time text-nowrap text-muted"
           v-text="time"

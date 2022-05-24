@@ -13,7 +13,7 @@
       </b-avatar>
       <div class="truncate">
         <h2 class="mb-25 font-weight-bolder">
-          {{ statistic }}
+          {{ statistic }}g
         </h2>
         <span>{{ statisticTitle }}</span>
       </div>

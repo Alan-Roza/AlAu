@@ -13,78 +13,42 @@
           <div
             class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1"
           >
-            <h6>{{ data.step1.title }}</h6>
+            <h5>{{ data[0].title }}</h5>
             <small class="timeline-item-time text-nowrap text-muted ml-1">{{
-              data.step1.duration
+              data[0].time
             }}</small>
           </div>
-          <p>{{ data.step1.subtitle }}</p>
-          <b-media no-body>
-            <b-media-aside class="mr-1">
-              <b-img
-                :src="data.step1.img"
-                height="23"
-                :alt="data.step1.fileName"
-              />
-            </b-media-aside>
-            <b-media-body class="my-auto">
-              <h6 class="media-body mb-0">
-                {{ data.step1.fileName }}
-              </h6>
-            </b-media-body>
-          </b-media>
+          <p>{{ data[0].mealSize }}</p>
         </app-timeline-item>
 
         <app-timeline-item variant="warning">
           <div
             class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1"
           >
-            <h6>{{ data.step2.title }}</h6>
+            <h5>{{ data[1].title }}</h5>
             <small class="timeline-item-time text-nowrap text-muted ml-1">{{
-              data.step2.duration
+              data[1].time
             }}</small>
           </div>
-          <p>{{ data.step2.subtitle }}</p>
-          <b-media no-body>
-            <b-media-aside class="mr-50">
-              <b-avatar :src="data.step2.avatar" size="38" />
-            </b-media-aside>
-            <b-media-body class="my-auto">
-              <h6 class="mb-0">
-                {{ data.step2.avatarName }}
-              </h6>
-              <p class="mb-0">
-                {{ data.step2.occupation }}
-              </p>
-            </b-media-body>
-          </b-media>
+          <p>{{ data[1].mealSize }}</p>
         </app-timeline-item>
 
         <app-timeline-item variant="info">
           <div
             class="d-flex justify-content-between flex-sm-row flex-column mb-sm-0 mb-1"
           >
-            <h6>{{ data.step3.title }}</h6>
+            <h5>{{ data[2].title }}</h5>
             <small class="timeline-item-time text-nowrap text-muted ml-1">{{
-              data.step3.duration
+              data[2].time
             }}</small>
           </div>
-          <p>{{ data.step3.subtitle }}</p>
-          <b-avatar-group size="35px">
-            <b-avatar
-              v-for="avatar in data.step3.avatars"
-              :key="avatar.userImg"
-              v-b-tooltip.hover.top="'Tooltip!'"
-              :src="avatar.userImg"
-              class="pull-up"
-            />
-          </b-avatar-group>
+          <p>{{ data[2].mealSize }}</p>
         </app-timeline-item>
 
         <app-timeline-item
-          :title="data.step4.title"
-          :subtitle="data.step4.subtitle"
-          :time="data.step4.duration"
+          :title="data[3].title"
+          :subtitle="data[3].mealSize"
+          :time="data[3].time"
           variant="danger"
         />
       </app-timeline>
@@ -99,34 +63,22 @@ import {
   BCardBody,
   BCardHeader,
   BCardTitle,
-  BImg,
-  BMedia,
-  BMediaBody,
-  BMediaAside,
-  BAvatar,
-  BAvatarGroup,
   VBTooltip,
-} from "bootstrap-vue";
-import AppTimeline from "@core/components/app-timeline/AppTimeline.vue";
-import AppTimelineItem from "@core/components/app-timeline/AppTimelineItem.vue";
+} from 'bootstrap-vue'
+import AppTimeline from '@core/components/app-timeline/AppTimeline.vue'
+import AppTimelineItem from '@core/components/app-timeline/AppTimelineItem.vue'
 /* eslint-disable global-require */
 export default {
   components: {
     BCard,
-    BImg,
     BCardBody,
     BCardHeader,
     BCardTitle,
     AppTimeline,
     AppTimelineItem,
-    BMedia,
-    BAvatar,
-    BMediaBody,
-    BMediaAside,
-    BAvatarGroup,
   },
   directives: {
-    "b-tooltip": VBTooltip,
+    'b-tooltip': VBTooltip,
   },
   props: {
     data: {
@@ -134,5 +86,5 @@ export default {
       default: () => {},
     },
   },
-};
+}
 </script>

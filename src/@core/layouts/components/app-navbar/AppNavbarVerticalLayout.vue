@@ -15,6 +15,7 @@
     >
       <dark-Toggler class="d-none d-lg-block" />
       <refresh class="d-none d-lg-block" />
+      <EatNow class="d-none d-lg-block" />
     </div>
 
     <b-navbar-nav class="nav align-items-center ml-auto">
@@ -28,6 +29,7 @@ import { BLink, BNavbarNav } from 'bootstrap-vue'
 import DarkToggler from './components/DarkToggler.vue'
 import UserDropdown from './components/UserDropdown.vue'
 import Refresh from './components/Refresh.vue'
+import EatNow from './components/EatNow.vue'
 
 export default {
   components: {
@@ -38,6 +40,7 @@ export default {
     Refresh,
     DarkToggler,
     UserDropdown,
+    EatNow,
   },
   props: {
     toggleVerticalMenuActive: {

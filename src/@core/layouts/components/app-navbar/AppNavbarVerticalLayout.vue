@@ -15,7 +15,7 @@
     >
       <dark-Toggler class="d-none d-lg-block" />
       <refresh class="d-none d-lg-block" />
-      <EatNow class="d-none d-lg-block" />
+      <EatNow @click="ManualFeed()" class="d-none d-lg-block" />
     </div>
 
     <b-navbar-nav class="nav align-items-center ml-auto">
@@ -26,6 +26,9 @@
 
 <script>
 import { BLink, BNavbarNav } from 'bootstrap-vue'
+import axios from 'axios'
+import { useToast } from 'vue-toastification/composition'
+import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 import DarkToggler from './components/DarkToggler.vue'
 import UserDropdown from './components/UserDropdown.vue'
 import Refresh from './components/Refresh.vue'
@@ -47,6 +50,43 @@ export default {
       type: Function,
       default: () => {},
     },
+  },
+  methods: {
+    ManualFeed() {
+      axios
+        .delete(`/manualFeeding?user=${this.userData.username}`).then(response => {
+          console.log(response, 'response list feeding')
+          this.toast({
+            component: ToastificationContent,
+            props: {
+              title: 'O Recipiente foi completado.',
+              icon: 'ThumbsUpIcon',
+              variant: 'success',
+            },
+          })
+        })
+        .catch(() => {
+          this.toast({
+            component: ToastificationContent,
+            props: {
+              title: 'Oops... Não foi possível completar o recipiente.',
+              icon: 'AlertTriangleIcon',
+              variant: 'danger',
+            },
+          })
+        })
+    },
+  },
+  setup() {
+    const toast = useToast()
+
+    const userData = JSON.parse(localStorage.getItem('userData'))
+
+
+    return {
+      toast,
+      userData,
+    }
   },
 }
 </script>

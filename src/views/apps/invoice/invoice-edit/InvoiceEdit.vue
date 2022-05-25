@@ -215,7 +215,7 @@ export default {
   created() {
     const getSchedule = async () => {
       try {
-        const response = await axios.get(`/feeding/list?user=${this.userData.username}&id=${router.currentRoute.params.id}`)
+        const response = await axios.get(`https://upx-backend-whntohr7oq-rj.a.run.app/feeding/list?user=${this.userData.username}&id=${router.currentRoute.params.id}`)
         if (response) {
           this.invoiceData = response.data
           this.invoiceData.frequency = response.data.frequency.time
@@ -251,7 +251,7 @@ export default {
           title: this.invoiceData.title,
           feedAmount: this.invoiceData.feedAmount,
         }
-        const response = await axios.post('/feeding/update', body)
+        const response = await axios.post('https://upx-backend-whntohr7oq-rj.a.run.app/feeding/update', body)
         if (response) {
           this.toast({
             component: ToastificationContent,

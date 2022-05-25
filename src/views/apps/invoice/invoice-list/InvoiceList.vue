@@ -168,7 +168,7 @@ export default {
   methods: {
     deleteSchedule(id) {
       axios
-        .delete(`/feeding/delete?user=${this.userData.username}&id=${id}`).then(response => {
+        .delete(`https://upx-backend-whntohr7oq-rj.a.run.app/feeding/delete?user=${this.userData.username}&id=${id}`).then(response => {
           console.log(response, 'response list feeding')
           this.toast({
             component: ToastificationContent,

@@ -28,7 +28,7 @@ export default function useInvoicesList() {
 
   const fetchInvoices = (ctx, callback) => {
     axios
-      .get(`/feeding/list?user=${userData.username}`).then(response => {
+      .get(`https://upx-backend-whntohr7oq-rj.a.run.app/feeding/list?user=${userData.username}`).then(response => {
         console.log(response, 'response list feeding')
         callback(response.data)
       })

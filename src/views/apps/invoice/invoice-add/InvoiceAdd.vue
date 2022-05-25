@@ -231,7 +231,7 @@ export default {
             saturday: true,
           },
         }
-        const response = await axios.post('/feeding/create', body)
+        const response = await axios.post('https://upx-backend-whntohr7oq-rj.a.run.app/feeding/create', body)
         if (response) {
           this.toast({
             component: ToastificationContent,

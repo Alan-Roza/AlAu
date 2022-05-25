@@ -17,7 +17,7 @@ export default function useAnalytics() {
 
   const fetchDashboard = () => {
     axios
-      .get(`/dashboard?user=${userData.username}`)
+      .get(`https://upx-backend-whntohr7oq-rj.a.run.app/dashboard?user=${userData.username}`)
       .then(response => {
         const {
           feedingSuccessInfos, histInfos, nextInfos, weightHistInfos,

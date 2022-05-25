@@ -178,6 +178,7 @@ export default {
               variant: 'success',
             },
           })
+          this.fetchInvoices('', () => {})
         })
         .catch(() => {
           this.toast({

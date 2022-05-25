@@ -30,7 +30,7 @@
 
 <script>
 import { BLink, BNavbarNav } from 'bootstrap-vue'
-import axios from 'axios'
+import axiosIns from '@/libs/axios'
 import { useToast } from 'vue-toastification/composition'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
 import DarkToggler from './components/DarkToggler.vue'
@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     manualFeed() {
-      axios
+      axiosIns
         .get(`/feeding/manual?user=${this.userData.username}`).then(response => {
           console.log(response, 'response list feeding')
           this.toast({

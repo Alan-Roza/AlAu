@@ -57,7 +57,7 @@ export default {
   created() {
     const fetchDashboardData = () => {
       axios
-        .get(`/dashboard?user=${this.userData.username}`)
+        .get(`https://upx-backend-whntohr7oq-rj.a.run.app/dashboard?user=${this.userData.username}`)
         .then(response => {
           this.data = response.data
         })

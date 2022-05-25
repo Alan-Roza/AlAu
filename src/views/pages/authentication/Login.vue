@@ -50,7 +50,7 @@
           </b-alert>
 
           <!-- form -->
-          <validation-observer ref="loginForm" #default="{invalid}">
+          <validation-observer ref="loginForm">
             <b-form class="auth-login-form mt-2" @submit.prevent="login">
               <!-- userName -->
               <b-form-group label="Usuário" label-for="login-userName">
@@ -75,7 +75,7 @@
                 type="submit"
                 variant="primary"
                 block
-                :disabled="invalid"
+                :disabled="userName.length === 0"
               >
                 Entrar
               </b-button>

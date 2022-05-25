@@ -38,7 +38,7 @@
             class="font-weight-bolder"
             :class="transaction.status.includes('Success') ? 'text-success' : 'text-primary'"
           >
-            {{ transaction.mealSize }}
+            {{ transaction.mealSize === 'Large' ? 'Muito' : transaction.mealSize === 'Medium' ? 'Médio' : 'Pouco' }}
           </div>
         </div>
       </div>

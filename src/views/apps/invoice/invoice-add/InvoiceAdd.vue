@@ -21,7 +21,6 @@
                 <!-- Header: Left Content -->
                 <div>
                   <div class="logo-wrapper">
-                    <logo />
                     <h3 class="text-primary invoice-logo">
                       AlAu
                     </h3>
@@ -171,7 +170,6 @@
 </template>
 
 <script>
-import Logo from '@core/layouts/components/Logo.vue'
 import { ref, onUnmounted } from '@vue/composition-api'
 import { heightTransition } from '@core/mixins/ui/transition'
 import Ripple from 'vue-ripple-directive'
@@ -202,7 +200,6 @@ export default {
     BFormTextarea,
     BInputGroupPrepend,
     flatPickr,
-    Logo,
     BFormTimepicker,
     InvoiceSidebarAddNewCustomer,
     vSelect,

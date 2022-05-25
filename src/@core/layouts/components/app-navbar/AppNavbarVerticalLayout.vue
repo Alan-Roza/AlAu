@@ -14,8 +14,12 @@
       class="bookmark-wrapper align-items-center flex-grow-1 d-none d-lg-flex"
     >
       <dark-Toggler class="d-none d-lg-block" />
-      <refresh class="d-none d-lg-block" />
-      <EatNow @click="ManualFeed()" class="d-none d-lg-block" />
+      <div>
+        <refresh class="d-none d-lg-block" />
+      </div>
+      <div @click="manualFeed">
+        <EatNow class="d-none d-lg-block" />
+      </div>
     </div>
 
     <b-navbar-nav class="nav align-items-center ml-auto">
@@ -52,9 +56,9 @@ export default {
     },
   },
   methods: {
-    ManualFeed() {
+    manualFeed() {
       axios
-        .delete(`/manualFeeding?user=${this.userData.username}`).then(response => {
+        .get(`/feeding/manual?user=${this.userData.username}`).then(response => {
           console.log(response, 'response list feeding')
           this.toast({
             component: ToastificationContent,
@@ -81,7 +85,6 @@ export default {
     const toast = useToast()
 
     const userData = JSON.parse(localStorage.getItem('userData'))
-
 
     return {
       toast,

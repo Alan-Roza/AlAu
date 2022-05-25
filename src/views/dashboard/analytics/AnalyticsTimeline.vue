@@ -18,7 +18,7 @@
               data[0].time
             }}</small>
           </div>
-          <p>{{ data[0].mealSize }}</p>
+          <p>{{ data[0].mealSize === 'Large' ? 'Muito' : data[0].mealSize === 'Medium' ? 'Médio' : 'Pouco' }}</p>
         </app-timeline-item>
 
         <app-timeline-item variant="warning">
@@ -30,7 +30,7 @@
               data[1].time
             }}</small>
           </div>
-          <p>{{ data[1].mealSize }}</p>
+          <p>{{ data[1].mealSize === 'Large' ? 'Muito' : data[1].mealSize === 'Medium' ? 'Médio' : 'Pouco' }}</p>
         </app-timeline-item>
 
         <app-timeline-item variant="info">
@@ -42,12 +42,12 @@
               data[2].time
             }}</small>
           </div>
-          <p>{{ data[2].mealSize }}</p>
+          <p>{{ data[2].mealSize === 'Large' ? 'Muito' : data[2].mealSize === 'Medium' ? 'Médio' : 'Pouco' }}</p>
         </app-timeline-item>
 
         <app-timeline-item
           :title="data[3].title"
-          :subtitle="data[3].mealSize"
+          :subtitle="data[3].mealSize === 'Large' ? 'Muito' : data[3].mealSize === 'Medium' ? 'Médio' : 'Pouco'"
           :time="data[3].time"
           variant="danger"
         />

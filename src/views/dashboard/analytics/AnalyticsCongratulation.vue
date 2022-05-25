@@ -19,7 +19,7 @@
     <b-card-text class="m-auto w-80">
       Seu pet se alimentou <strong>{{ data }}x</strong> essa
       semana.<br />
-      Você pode checar as alimentações futuras e as que estão para acontecer nos gráficos desta página.
+      Você pode conferir e ter um <b>overview</b> sobre tudo através desta Dashboard!
     </b-card-text>
   </b-card>
 </template>

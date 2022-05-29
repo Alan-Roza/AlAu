@@ -4,10 +4,12 @@ export default {
   namespaced: true,
   state: {
     username: '',
+    dashboardRefresh: false,
     cartItemsCount: '',
   },
   getters: {
     getUsername: state => state.username,
+    getRefreshDashboard: state => state.dashboardRefresh,
   },
   mutations: {
     UPDATE_CART_ITEMS_COUNT(state, count) {
@@ -16,6 +18,10 @@ export default {
     UPDATE_USERNAME(state, username) {
       console.log(state, username)
       state.username = username
+    },
+    UPDATE_DASHBOARD(state, dashboard) {
+      console.log(state, dashboard)
+      state.dashboardRefresh = dashboard
     },
   },
   actions: {

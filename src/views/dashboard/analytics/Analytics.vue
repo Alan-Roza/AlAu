@@ -16,6 +16,10 @@
       </b-col>
     </b-row>
 
+    <div style="display: none">
+      {{ refreshing }}
+    </div>
+
     <b-row class="match-height">
       <b-col lg="6">
         <analytics-timeline :data="data.next" />
@@ -33,9 +37,9 @@ import { BRow, BCol } from 'bootstrap-vue'
 import StatisticCardWithAreaChart from '@core/components/statistics-cards/StatisticCardWithAreaChart.vue'
 import { kFormatter } from '@core/utils/filter'
 import axios from 'axios'
+import store from '@/store/index'
 import { useToast } from 'vue-toastification/composition'
 import ToastificationContent from '@core/components/toastification/ToastificationContent.vue'
-// import useAnalytics from './useAnalytics'
 import AnalyticsCongratulation from './AnalyticsCongratulation.vue'
 import AnalyticsTimeline from './AnalyticsTimeline.vue'
 import EcommerceTransactions from './EcommerceTransactions.vue'
@@ -54,8 +58,28 @@ export default {
       data: {},
     }
   },
+  computed: {
+    refreshing() {
+      this.fetchDashboardData()
+      return store.state.infos.dashboardRefresh
+    },
+  },
   created() {
-    const fetchDashboardData = () => {
+    this.fetchDashboardData()
+  },
+  setup() {
+    const userData = JSON.parse(localStorage.getItem('userData'))
+
+    const toast = useToast()
+
+    return {
+      toast,
+      userData,
+    }
+  },
+  methods: {
+    kFormatter,
+    fetchDashboardData() {
       axios
         .get(`https://upx-backend-whntohr7oq-rj.a.run.app/dashboard?user=${this.userData.username}`)
         .then(response => {
@@ -71,21 +95,7 @@ export default {
             },
           })
         })
-    }
-    fetchDashboardData()
-  },
-  setup() {
-    const userData = JSON.parse(localStorage.getItem('userData'))
-
-    const toast = useToast()
-
-    return {
-      toast,
-      userData,
-    }
-  },
-  methods: {
-    kFormatter,
+    },
   },
 }
 </script>

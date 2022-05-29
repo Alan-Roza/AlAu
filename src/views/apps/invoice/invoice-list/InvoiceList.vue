@@ -170,6 +170,8 @@ export default {
       axios
         .delete(`https://upx-backend-whntohr7oq-rj.a.run.app/feeding/delete?user=${this.userData.username}&id=${id}`).then(response => {
           console.log(response, 'response list feeding')
+          // eslint-disable-next-line no-restricted-globals
+          location.reload()
           this.toast({
             component: ToastificationContent,
             props: {

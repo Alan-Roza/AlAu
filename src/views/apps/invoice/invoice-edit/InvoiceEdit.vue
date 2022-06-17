@@ -221,7 +221,7 @@ export default {
           this.invoiceData.frequency = response.data.frequency.time
           this.invoiceData.createdAt = response.data.creationDate
           this.invoiceData.description = response.data.desc
-          this.invoiceData.process = response.data.operation
+          this.invoiceData.process = response.data.operation === 'feed' ? 'Alimentar' : ''
           this.invoiceData.feedAmount = response.data.mealSize
           this.invoiceData.id = response.data.id ?? router.currentRoute.params.id
         }
@@ -243,13 +243,22 @@ export default {
       try {
         const body = {
           id: this.invoiceData.id ?? router.currentRoute.params.id,
-          createdAt: new Date(this.invoiceData.createdAt),
-          username: this.userData.username,
+          user: this.userData.username,
+          creationDate: new Date(this.invoiceData.createdAt),
+          desc: this.invoiceData.description,
+          mealSize: this.invoiceData.feedAmount,
           operation: this.invoiceData.process.value,
-          frequency: this.invoiceData.frequency,
-          description: this.invoiceData.description,
           title: this.invoiceData.title,
-          feedAmount: this.invoiceData.feedAmount,
+          frequency: {
+            time: this.invoiceData.frequency,
+            sunday: true,
+            monday: true,
+            tuesday: true,
+            wednesday: true,
+            thursday: true,
+            friday: true,
+            saturday: true,
+          },
         }
         const response = await axios.post('https://upx-backend-whntohr7oq-rj.a.run.app/feeding/update', body)
         if (response) {

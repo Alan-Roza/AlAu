@@ -32,6 +32,7 @@
       :items="fetchInvoices"
       responsive
       :fields="tableColumns"
+      refresh
       primary-key="id"
       :sort-by.sync="sortBy"
       show-empty

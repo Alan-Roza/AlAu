@@ -1,0 +1,22 @@
+{
+  "short_name": "AlAu",
+  "name": "Alimentador Automático",
+  "icons": [
+    {
+      "src": "dog.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "dog.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#FFFFFF",
+  "display": "standalone",
+  "scope": "/",
+  "theme_color": "#854c14",
+  "description": "Comida para o seu pet!"
+}
